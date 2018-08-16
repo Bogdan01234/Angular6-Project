@@ -1,6 +1,10 @@
 {
     "name": "mean-angular2-registration-login-example-server",
     "version": "1.0.0",
+<<<<<<< HEAD
+=======
+    
+>>>>>>> c7f3b79ff7453fad369a42e9c328b3a230696c2e
     "dependencies": {
         "bcryptjs": "^2.1.0",
         "body-parser": "^1.13.2",
@@ -13,8 +17,12 @@
         "mongoskin": "^2.1.0",
         "q": "^1.4.1",
         "request": "^2.87.0",
+<<<<<<< HEAD
         "rootpath": "^0.1.2",
         "nodemailer": "^4.6.8"
+=======
+        "rootpath": "^0.1.2"
+>>>>>>> c7f3b79ff7453fad369a42e9c328b3a230696c2e
     },
     "license": "MIT"
 }

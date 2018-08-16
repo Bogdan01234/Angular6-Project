@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
         private router: Router,
         private userService: UserService,
         private alertService: AlertService) { }
+
 
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
