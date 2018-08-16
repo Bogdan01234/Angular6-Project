@@ -13,13 +13,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-
+import { ProfileComponent } from './profile';
+import { LandingComponent } from './landing';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AlertService, AuthenticationService, UserService } from './_services';
 import { HomeComponent } from './home';
 import { RegisterComponent } from './register';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 
 import { AppComponent } from './app.component';
 import { routing }        from './app.routing';
@@ -29,6 +31,9 @@ import { routing }        from './app.routing';
     AppComponent,
     RegisterComponent,
     HomeComponent,
+    ProfileComponent,
+    LandingComponent,
+    NavbarComponent,
     LoginComponent
   ],
   imports: [
