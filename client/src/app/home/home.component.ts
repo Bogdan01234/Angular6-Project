@@ -9,8 +9,8 @@ import {DeleteSelf} from '../interfase/index';
 
 @Component({
     // moduleId: module.id,
-    templateUrl: 'home.component.html',
-    // styleUrls: ['home.component.css']
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 
 
@@ -49,8 +49,16 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        var body = document.getElementsByTagName('body')[0];
+        body.classList.add('login-page');
         this.loadAllUsers();
         console.log(this.currentUser)
+    }
+
+    ngOnDestroy(){
+        var body = document.getElementsByTagName('body')[0];
+        body.classList.remove('login-page');
+
     }
     blocking(){
         for (let user of this.controller){

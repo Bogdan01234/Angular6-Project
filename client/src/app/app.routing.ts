@@ -8,11 +8,11 @@ import { LandingComponent } from './landing';
 import { AuthGuard } from './_guards';
 
 const appRoutes: Routes = [
-    { path: '', component: LandingComponent, canActivate: [AuthGuard] },
+    { path: '', component: LandingComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'profile', component: ProfileComponent },
-    { path: 'home', component: HomeComponent },
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]  },
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
 
 
     // otherwise redirect to home

@@ -5,3 +5,9 @@
   label {
     display: block;
   } */
+
+  .pure-card {
+    display: inline-block;
+    background: none;
+    border: none;
+  }
