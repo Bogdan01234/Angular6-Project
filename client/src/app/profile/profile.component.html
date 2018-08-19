@@ -1,6 +1,6 @@
 <div class="wrapper">
     <div class="page-header page-header-small" filter-color="orange">
-        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg5.jpg') ;">
+        <div class="page-header-image rellax-header" data-rellax-speed="-8" style="background-image: url('assets/img/bg11.jpg') ;">
         </div>
         <div class="container">
             <div class="content-center">
@@ -8,7 +8,6 @@
                     <img src="assets/img/ryan.jpg" alt="">
                 </div>
                 <h3 class="title">Ryan Scheinder</h3>
-                <p class="category">Photographer</p>
                 <div class="content">
                     <div class="social-description">
                         <h2>26</h2>
@@ -16,11 +15,11 @@
                     </div>
                     <div class="social-description">
                         <h2>26</h2>
-                        <p>Comments</p>
+                        <p>Instructions</p>
                     </div>
                     <div class="social-description">
                         <h2>48</h2>
-                        <p>Bookmarks</p>
+                        <p>Like</p>
                     </div>
                 </div>
             </div>
@@ -29,23 +28,16 @@
     <div class="section">
         <div class="container">
           <div class="button-container">
-              <a href="#button" class="btn btn-primary btn-round btn-lg">Follow</a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Twitter">
-                  <i class="fa fa-twitter"></i>
-              </a>
-              <a href="#button" class="btn btn-default btn-round btn-lg btn-icon" rel="tooltip" title="Follow me on Instagram">
-                  <i class="fa fa-instagram"></i>
-              </a>
+                <a href="#button" class="btn bg-primary2 btn-round btn-lg">Create Instructions</a>
+                <!-- <a href="#button" class="btn bg-primary2 btn-round btn-lg">Settings</a>               -->
           </div>
-          <h3 class="title">About me</h3>
-          <h5 class="description">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist of considerable range.</h5>
-            <div class="row">
+          <div class="row">
                 <div class="col-md-12">
-                    <h4 class="title text-center">My Portfolio</h4>
-                      <ngb-tabset [justify]="'center'" type="pills" class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
+                    <h4 class="title text-center">My Instructions</h4>
+                      <ngb-tabset [justify]="'center'" type="pills" class="nav  nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
                           <ngb-tab>
                             <ng-template ngbTabTitle>
-                              <i class="now-ui-icons design_image"></i>
+                              <i class="now-ui-icons design_image_3"></i>
                             </ng-template>
                               <ng-template ngbTabContent>
                                 <div class="row">
@@ -66,7 +58,7 @@
                           </ngb-tab>
                           <ngb-tab>
                             <ng-template ngbTabTitle>
-                              <i class="now-ui-icons location_world"></i>
+                              <i class="now-ui-icons design_image_2"></i>
                             </ng-template>
                               <ng-template ngbTabContent>
                                 <div class="row">
@@ -87,7 +79,7 @@
                           </ngb-tab>
                           <ngb-tab>
                             <ng-template ngbTabTitle>
-                              <i class="now-ui-icons sport_user-run"></i>
+                              <i class="now-ui-icons design_image_4"></i>
                             </ng-template>
                               <ng-template ngbTabContent>
                                 <div class="row">
@@ -106,43 +98,27 @@
                                 </div>
                               </ng-template>
                           </ngb-tab>
-                      </ngb-tabset>
+                    </ngb-tabset>
+                    <!-- <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"
+                        (onHover)="hoveringOver($event)" (onLeave)="resetStar()"
+                        [titles]="['one','two','three']">
+                    </rating>
+                    <span class="label"
+                        [ngClass]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
+                        [ngStyle]="{display: (overStar && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span>
+                    <div class="card">
+                        <pre class="card-block card-header" style="margin:15px 0;">
+                            Rate: <b>{{rate}}</b>;  Readonly is: <i>{{isReadonly}}</i>;
+                            Hovering over: <b>{{overStar || "none"}}</b></pre>
+                    </div> 
+                    <button type="button" class="btn btn-sm btn-danger" (click)="rate = 0"
+                        [disabled]="isReadonly">Clear
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" 
+                    (click)="isReadonly = ! isReadonly">Toggle Readonly
+                    </button> -->
                 </div>
             </div>
         </div>
     </div>
-    <footer class="footer footer-default">
-        <div class="container">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="https://www.creative-tim.com">
-                            Creative Tim
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.creative-tim.com/about-us">
-                            About Us
-                        </a>
-                    </li>
-                    <li>
-                        <a href="http://blog.creative-tim.com">
-                            Blog
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
-                            MIT License
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="copyright">
-                &copy;
-                {{data | date: 'yyyy'}}, Designed by
-                <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
-                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
-            </div>
-        </div>
-    </footer>
 </div>

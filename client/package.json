@@ -28,6 +28,7 @@
     "core-js": "^2.5.4",
     "jw-bootstrap-switch-ng2": "^1.0.10",
     "ng2-nouislider": "^1.7.12",
+    "ngx-bootstrap": "^3.0.1",
     "nouislider": "^11.1.0",
     "now-ui-kit": "^1.1.0",
     "rellax": "1.4.0",

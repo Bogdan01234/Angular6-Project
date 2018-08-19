@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RatingModule } from 'ngx-bootstrap';
 
 import { ProfileComponent } from './profile';
 import { LandingComponent } from './landing';
@@ -40,6 +41,7 @@ import { routing }        from './app.routing';
     NouisliderModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RatingModule.forRoot(),
     NgbModule.forRoot(),
     CommonModule,
     FormsModule,
