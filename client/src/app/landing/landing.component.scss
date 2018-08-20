@@ -7,9 +7,8 @@
 }
 
 .categories_el{
-    width: 18rem;
-    flex: 1;
-    max-height: 470px;
+    width: 16rem;
+    max-height: 450px;
 }
 
 .stile1{
@@ -18,4 +17,37 @@
 
 .flex-container {
     justify-content: center;
+}
+
+@media screen and (max-width: 1200px){
+    .categories_el{
+        width: 18rem;
+        flex: 1;
+        max-height: 510px;
+    }
+}
+
+
+@media screen and (max-width: 992px){
+    .categories_el{
+        width: 18rem;
+        flex: 1;
+        max-height: 600px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .categories_el{
+        width: 20rem;
+        flex: 1;
+        max-height: 770px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .categories_el{
+        width: 16rem;
+        flex: auto;
+        max-height: 770px;
+    }
 }
