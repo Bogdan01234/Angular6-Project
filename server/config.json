@@ -1,5 +1,26 @@
 ﻿{
     "connectionString": "mongodb://localhost:27017/mean-angular2-registration-login-example",
     "apiUrl": "http://localhost:4000",
-    "secret": "Secret"
+    "secret": "Secret",
+    "development": { 
+        "username": "root", 
+        "password": "123", 
+        "database": "sequelize_passport", 
+        "host": "127.0.0.1", 
+        "dialect": "mysql"
+     }, 
+    "test": { 
+        "username": "", 
+        "password": null, 
+        "database": "", 
+        "host": "", 
+        "dialect": "mysql" 
+    },
+     "production": { 
+        "username": "", 
+        "password": null, 
+        "database": "", 
+        "host": "127.0.0.1", 
+        "dialect": "mysql" 
+    } 
 }

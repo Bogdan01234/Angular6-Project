@@ -10,6 +10,18 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+var models = require("./models");
+
+models.sequelize.sync().then(function() {
+ 
+    console.log('Nice! Database looks fine')
+ 
+}).catch(function(err) {
+ 
+    console.log(err, "Something went wrong with the Database Update!")
+ 
+});
+
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
 app.use(expressJwt({
     secret: config.secret,
@@ -21,7 +33,7 @@ app.use(expressJwt({
         }
         return null;
     }
-}).unless({ path: ['/users/authenticate', '/users/register', /^\/users\/activate*/] }));
+}).unless({ path: ['/users/authenticate', '/users/register'] }));
 
 // routes
 app.use('/users', require('./controllers/users.controller'));

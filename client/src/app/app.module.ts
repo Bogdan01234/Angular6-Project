@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RatingModule } from 'ngx-bootstrap';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 
 import { ProfileComponent } from './profile';
 import { LandingComponent } from './landing';
@@ -26,6 +27,9 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 
 import { AppComponent } from './app.component';
 import { routing }        from './app.routing';
+import { MinInstructionComponent } from './min-instruction/min-instruction.component';
+import { InstructionComponent } from './min-instruction/instruction/instruction.component';
+import { CreatreInstructionComponent } from './creatre-instruction/creatre-instruction.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +39,16 @@ import { routing }        from './app.routing';
     ProfileComponent,
     LandingComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    MinInstructionComponent,
+    InstructionComponent,
+    CreatreInstructionComponent
   ],
   imports: [
     NouisliderModule,
     ReactiveFormsModule,
     HttpClientModule,
+    InputTextareaModule,
     RatingModule.forRoot(),
     NgbModule.forRoot(),
     CommonModule,

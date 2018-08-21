@@ -7,6 +7,10 @@ var mongo = require('mongoskin');
 var db = mongo.db(config.connectionString, { native_parser: true });
 db.bind('users');
 
+var User  = require('../models').user;
+
+var index = require('../models/index');
+
 
 
 
@@ -90,10 +94,9 @@ function create(userParam, activated) {
     
 
     // validation
-    db.users.findOne(
-        { username: userParam.username },
-        function (err, user) {
-            if (err) deferred.reject(err.name + ': ' + err.message);
+    User.findOne({where:
+        { username: userParam.username }})
+        .then(function (user) {
 
             if (user) {
                 // username already exists
@@ -109,21 +112,25 @@ function create(userParam, activated) {
         var user = _.omit(userParam,'password', 'activated');
         user.activated = activated;      
         
+        
 
         // add hashed password to user object
-        user.hash = bcrypt.hashSync(userParam.password, 10);
-        
-        
+        user.password = bcrypt.hashSync(userParam.password, 10);
 
-        db.users.insert(
-            user,
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
-
-                deferred.resolve();
+        User.create(user)
+        .then(function (newUser, created) {
+                
+                if(!newUser){
+                    deferred.reject(err.name + ': ' + err.message);
+                    }
+                    
+                    if(newUser){
+                    deferred.resolve();
+                    }
+                
             });
 
-        emailSent(user.hash)
+        // emailSent(user.hash)
     }
     function emailSent(hash){
     

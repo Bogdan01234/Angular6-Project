@@ -14,7 +14,16 @@
         "q": "^1.4.1",
         "request": "^2.87.0",
         "rootpath": "^0.1.2",
-        "nodemailer": "^4.6.8"
+        "nodemailer": "^4.6.8",
+        "bcrypt-nodejs": "0.0.3",
+        "dotenv": "^4.0.0",
+        "express-handlebars": "^3.0.0",
+        "express-session": "^1.15.6",
+        "mysql": "^2.16.0",
+        "mysql2": "^1.6.1",
+        "passport": "^0.3.2",
+        "passport-local": "^1.0.0",
+        "sequelize": "^3.33.0"
     },
     "license": "MIT"
 }

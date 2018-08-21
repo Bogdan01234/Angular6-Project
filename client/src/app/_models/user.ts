@@ -2,7 +2,12 @@
     _id: string;
     username: string;
     password: string;
-    activated: Number;  
-    entrance: Boolean;
+    activated: Number;
     email: string;
 }
+
+    
+
+
+
+            
