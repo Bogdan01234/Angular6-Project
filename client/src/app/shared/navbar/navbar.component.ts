@@ -13,6 +13,7 @@ export class NavbarComponent implements OnInit {
     private sidebarVisible: boolean;
     closeResult: string;
     private isUserLog: Boolean;
+    private b: string;
 
     constructor(private modalService: NgbModal, public location: Location, private element : ElementRef, private AlertService: AlertService) {
         this.sidebarVisible = false;
@@ -24,6 +25,9 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         const navbar: HTMLElement = this.element.nativeElement;
         this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
+        if(localStorage.getItem('currentUser')){
+            this.isUserLog = true;
+        }
     }
     sidebarOpen() {
         const toggleButton = this.toggleButton;
@@ -79,6 +83,7 @@ export class NavbarComponent implements OnInit {
     }
     logOut(){
        this.AlertService.isUserLog.next(false);
+       localStorage.removeItem('currentUser');
     }
 
     private getDismissReason(reason: any): string {
