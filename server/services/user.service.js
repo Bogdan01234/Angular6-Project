@@ -32,22 +32,25 @@ module.exports = service;
 function authenticate(username, password) {
     var deferred = Q.defer();
 
-    db.users.findOne({ username: username }, function (err, user) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
-        if (user && bcrypt.compareSync(password, user.hash) && user.activated === 0) {
+    User.findOne({where:
+        { username: username }})
+        .then(function (user) {
+        if (user && bcrypt.compareSync(password, user.password) && user.activated === 0) {
             // authentication successful
             deferred.resolve({
-                _id: user._id,
+                id: user.id,
                 username: user.username,
                 email: user.email,
                 activated: user.activated,
-                token: jwt.sign({ sub: user._id }, config.secret)
+                token: jwt.sign({ sub: user.id }, config.secret)
             });
         } else {
             // authentication failed
             deferred.resolve();
         }
+        
     });
+    // console.log(deferred.promise);
 
     return deferred.promise;
 }
@@ -70,10 +73,10 @@ function getAll() {
     return deferred.promise;
 }
 
-function getById(_id) {
+function getById(id) {
     var deferred = Q.defer();
 
-    db.users.findById(_id, function (err, user) {
+    db.users.findById(id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user) {
@@ -166,11 +169,11 @@ function create(userParam, activated) {
     return deferred.promise;
 }
 
-function update(_id, userParam) {
+function update(id, userParam) {
     var deferred = Q.defer();
 
     // validation
-    db.users.findById(_id, function (err, user) {
+    db.users.findById(id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         if (user.username !== userParam.username) {
@@ -205,7 +208,7 @@ function update(_id, userParam) {
         }
 
         db.users.update(
-            { _id: mongo.helper.toObjectID(_id) },
+            { id: mongo.helper.toObjectID(id) },
             { $set: set },
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
@@ -217,11 +220,11 @@ function update(_id, userParam) {
     return deferred.promise;
 }
 
-function _delete(_id) {
+function _delete(id) {
     var deferred = Q.defer();
 
     db.users.remove(
-        { _id: mongo.helper.toObjectID(_id) },
+        { id: mongo.helper.toObjectID(id) },
         function (err) {
             if (err) deferred.reject(err.name + ': ' + err.message);
 
@@ -231,10 +234,10 @@ function _delete(_id) {
     return deferred.promise;
 }
 
-function blocking(_id) {
+function blocking(id) {
     var deferred = Q.defer();
     
-    db.users.findById(_id, function (err, user) {
+    db.users.findById(id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         var set = {
@@ -242,7 +245,7 @@ function blocking(_id) {
         };
 
         db.users.update(
-            { _id: mongo.helper.toObjectID(_id) },
+            { id: mongo.helper.toObjectID(id) },
             { $set: set },
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
@@ -254,10 +257,10 @@ function blocking(_id) {
     return deferred.promise;
 }
 
-function unblock(_id) {
+function unblock(id) {
     var deferred = Q.defer();
     
-    db.users.findById(_id, function (err, user) {
+    db.users.findById(id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
 
         var set = {
@@ -265,7 +268,7 @@ function unblock(_id) {
         };
 
         db.users.update(
-            { _id: mongo.helper.toObjectID(_id) },
+            { id: mongo.helper.toObjectID(id) },
             { $set: set },
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);

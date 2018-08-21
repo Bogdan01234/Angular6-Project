@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
+
 import { AlertService, AuthenticationService } from '../_services';
 
 @Component({
@@ -64,6 +65,7 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
+                    this.alertService.isUserLog.next(true);
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {

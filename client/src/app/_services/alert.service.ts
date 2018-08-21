@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 export class AlertService {
     private subject = new Subject<any>();
     private keepAfterNavigationChange = false;
+    public isUserLog: Subject<boolean> = new Subject<boolean>();
 
     constructor(private router: Router) {
         // clear alert message on route change

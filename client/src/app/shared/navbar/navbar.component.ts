@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import {NgbModal, ModalDismissReasons }from '@ng-bootstrap/ng-bootstrap';
-
+import {AlertService} from '../../_services/alert.service'
+ 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
@@ -11,9 +12,13 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     closeResult: string;
+    private isUserLog: Boolean;
 
-    constructor(private modalService: NgbModal, public location: Location, private element : ElementRef) {
+    constructor(private modalService: NgbModal, public location: Location, private element : ElementRef, private AlertService: AlertService) {
         this.sidebarVisible = false;
+        this.AlertService.isUserLog.subscribe(value => {
+            this.isUserLog = value;
+        })
     }
 
     ngOnInit() {
@@ -72,6 +77,10 @@ export class NavbarComponent implements OnInit {
             });
         }
     }
+    logOut(){
+       this.AlertService.isUserLog.next(false);
+    }
+
     private getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
             return 'by pressing ESC';

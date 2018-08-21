@@ -8,11 +8,11 @@ router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.get('/', getAll);
 router.get('/current', getCurrent);
-router.put('/:_id', update);
-router.get('/:_id', blocking);
-router.get('/unblock/:_id', unblock);
+router.put('/:id', update);
+router.get('/:id', blocking);
+router.get('/unblock/:id', unblock);
 router.get('/activate/:hash', activate);
-router.delete('/:_id', _delete);
+router.delete('/:id', _delete);
 
 module.exports = router;
 
@@ -67,7 +67,7 @@ function getCurrent(req, res) {
 }
 
 function update(req, res) {
-    userService.update(req.params._id, req.body)
+    userService.update(req.params.id, req.body)
         .then(function () {
             res.json('success');
         })
@@ -77,8 +77,8 @@ function update(req, res) {
 }
 
 function _delete(req, res) {
-    var deleteSelf = req.user.sub === req.params._id;
-    userService.delete(req.params._id)
+    var deleteSelf = req.user.sub === req.params.id;
+    userService.delete(req.params.id)
         .then(function () {
             res.json({deleteSelf: deleteSelf});
         })
@@ -88,8 +88,8 @@ function _delete(req, res) {
 }
 
 function blocking(req, res) {
-    var deleteSelf = req.user.sub === req.params._id;
-    userService.blocking(req.params._id)
+    var deleteSelf = req.user.sub === req.params.id;
+    userService.blocking(req.params.id)
         .then(function () {
         res.json({deleteSelf: deleteSelf});
         })
@@ -100,7 +100,7 @@ function blocking(req, res) {
 }
 
 function unblock(req, res) {
-    userService.unblock(req.params._id)
+    userService.unblock(req.params.id)
         .then(function () {
             res.json('success');
         })

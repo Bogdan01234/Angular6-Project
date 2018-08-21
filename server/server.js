@@ -12,15 +12,7 @@ app.use(bodyParser.json());
 
 var models = require("./models");
 
-models.sequelize.sync().then(function() {
- 
-    console.log('Nice! Database looks fine')
- 
-}).catch(function(err) {
- 
-    console.log(err, "Something went wrong with the Database Update!")
- 
-});
+
 
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
 app.use(expressJwt({
@@ -47,6 +39,16 @@ app.use(function (err, req, res, next) {
     }
 
     
+});
+
+models.sequelize.sync().then(function() {
+ 
+    console.log('Nice! Database looks fine')
+ 
+}).catch(function(err) {
+ 
+    console.log(err, "Something went wrong with the Database Update!")
+ 
 });
 
 // start server

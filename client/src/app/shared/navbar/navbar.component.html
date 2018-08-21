@@ -38,7 +38,7 @@
               </div>
             </div>
         <div class="collapse navbar-collapse" data-nav-image="assets/img/blurred-image-1.jpg" data-color="orange">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto" *ngIf = '!isUserLog'>            
               <li class="nav-item">
                   <a class="nav-link" [routerLink]="['/login']">
                       <i class="now-ui-icons user-1"></i>
@@ -51,31 +51,21 @@
                       <p>Sign Up</p>
                     </a>
                 </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link btn btn-neutral" href="https://www.creative-tim.com/product/now-ui-kit-pro-angular" target="_blank">
-                        <i class="now-ui-icons arrows-1_share-66"></i>
-                        <p>Upgrade to PRO</p>
-                    </a>
-                </li> -->
-                <!-- <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank" data-original-title="Follow us on Twitter">
-                        <i class="fa fa-twitter"></i>
-                        <p class="d-lg-none d-xl-none">Twitter</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank" data-original-title="Like us on Facebook">
-                        <i class="fa fa-facebook-square"></i>
-                        <p class="d-lg-none d-xl-none">Facebook</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" title="" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank" data-original-title="Follow us on Instagram">
-                        <i class="fa fa-instagram"></i>
-                        <p class="d-lg-none d-xl-none">Instagram</p>
-                    </a>
-                </li> -->
             </ul>
+            <ul class="navbar-nav ml-auto" *ngIf = 'isUserLog'>            
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/profile']">
+                            <i class="now-ui-icons user-1"></i>
+                            <p>Profile</p>
+                        </a>
+                    </li>
+                      <li class="nav-item">
+                          <a class="nav-link"  (click)="logOut()">
+                            <i  class="now-ui-icons files_paper"></i>
+                            <p>Log Out</p>
+                          </a>
+                      </li>
+                  </ul>
         </div>
     </div>
 </nav>

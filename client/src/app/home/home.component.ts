@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     checkAll(checked: boolean){
         if(checked){
             console.log("aaa")
-            this.controller.push(...(this.users.map((i) => i._id)));      
+            this.controller.push(...(this.users.map((i) => i.id)));      
         }else{
             this.controller.splice(0);            
         }

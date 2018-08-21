@@ -22,7 +22,7 @@
                 <tbody>
                     <tr *ngFor="let user of users; let i = index">
                         <td> 
-                            <input type="checkbox" value="{{user._id}}" [ngModel]="checked" #checkbox (change)="check(checkbox, checkbox.checked)"   [(ngModel)]="disabled">
+                            <input type="checkbox" value="{{user.id}}" [ngModel]="checked" #checkbox (change)="check(checkbox, checkbox.checked)"   [(ngModel)]="disabled">
                         </td>  
                         <th scope="row">{{i + 1}}</th>
                         <!-- <input type="checkbox" [formControlName]="i"> {{users1[i]._id}} -->
