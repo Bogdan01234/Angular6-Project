@@ -45,6 +45,7 @@ function register(req, res) {
 function getAll(req, res) {
     userService.getAll()
         .then(function (users) {
+            console.log(users);
             res.send(users);
         })
         .catch(function (err) {

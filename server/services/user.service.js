@@ -58,17 +58,14 @@ function authenticate(username, password) {
 function getAll() {
     var deferred = Q.defer();
     
-
-    db.users.find().toArray(function (err, users) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
-
-        // return users (without hashed passwords)
+    User.findAll({raw: true}).then(function(users){
+        // projects will be an array of all Project instances
         users = _.map(users, function (user) {
             return _.omit(user, 'hash');
         });
 
         deferred.resolve(users);
-    });
+      });    
 
     return deferred.promise;
 }
@@ -76,9 +73,8 @@ function getAll() {
 function getById(id) {
     var deferred = Q.defer();
 
-    db.users.findById(id, function (err, user) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
-
+    User.findById(id)
+    .then(function (user) {
         if (user) {
             // return user (without hashed password)
             deferred.resolve(_.omit(user, 'hash'));
@@ -135,6 +131,7 @@ function create(userParam, activated) {
 
         // emailSent(user.hash)
     }
+
     function emailSent(hash){
     
         var nodemailer = require('nodemailer');
@@ -173,15 +170,14 @@ function update(id, userParam) {
     var deferred = Q.defer();
 
     // validation
-    db.users.findById(id, function (err, user) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+    User.findById(id)
+    .then(function (user) {
 
         if (user.username !== userParam.username) {
             // username has changed so check if the new username is already taken
-            db.users.findOne(
-                { username: userParam.username },
-                function (err, user) {
-                    if (err) deferred.reject(err.name + ': ' + err.message);
+            User.findOne({where:
+            { username: userParam.username }})
+            .then(function (user) {
 
                     if (user) {
                         // username already exists
@@ -207,14 +203,23 @@ function update(id, userParam) {
             set.hash = bcrypt.hashSync(userParam.password, 10);
         }
 
-        db.users.update(
-            { id: mongo.helper.toObjectID(id) },
-            { $set: set },
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
+        var userUpd = User.build({ id: id}, { isNewRecord: false });
+       
+        userUpd.update({$set : set}, { where: { id: id } })
+        .then(function(){
+            deferred.resolve();
+        });
 
-                deferred.resolve();
-            });
+        // User.update( {
+        //          $set: set 
+        //         }, {
+        //     where:{
+        //          id: id
+        //      }});
+            
+        // deferred.resolve();
+    
+            
     }
 
     return deferred.promise;
@@ -223,64 +228,43 @@ function update(id, userParam) {
 function _delete(id) {
     var deferred = Q.defer();
 
-    db.users.remove(
-        { id: mongo.helper.toObjectID(id) },
-        function (err) {
-            if (err) deferred.reject(err.name + ': ' + err.message);
+    var userDel = User.build({ id: id}, { isNewRecord: false });
 
-            deferred.resolve();
-        });
+    
+    userDel.destroy({ where: { id: id} })
+    .then(function(destroyed){
+        deferred.resolve();
+    });
 
     return deferred.promise;
 }
 
 function blocking(id) {
-    var deferred = Q.defer();
-    
-    db.users.findById(id, function (err, user) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
 
-        var set = {
-            activated: 1
-        };
-
-        db.users.update(
-            { id: mongo.helper.toObjectID(id) },
-            { $set: set },
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
-
-                deferred.resolve();
-            });
-    });
-
-    return deferred.promise;
+    return updateById(id, 1);
 }
 
 function unblock(id) {
+
+    return updateById(id, 0);
+}
+
+function updateById(id, activated){
     var deferred = Q.defer();
     
-    db.users.findById(id, function (err, user) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+    User.findById(id)
+    .then(function () {
 
-        var set = {
-            activated: 0
-        };
+            var userUpd = User.build({ id: id }, { isNewRecord: false });
 
-        db.users.update(
-            { id: mongo.helper.toObjectID(id) },
-            { $set: set },
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
-
+            userUpd.update({activated: activated}, { where: { id: id } })
+            .then(function(){
                 deferred.resolve();
-            });
+            });                 
+               
     });
 
     return deferred.promise;
-}
 
-function activate(hash){
-    console.log("ADD HASH");
 }
 

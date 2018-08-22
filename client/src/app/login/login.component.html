@@ -25,18 +25,18 @@
                             </div>
                     </div>
                     <div class="content form-group">
-                      <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus===true}">
+                      <div class="input-group form-group-no-border " [ngClass]="{'input-group-focus':focus===true}">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                            <span class="group_1 input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
                         </div>
                           <input type="text" class="form-control"  formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Name..." (focus)="focus=true" (blur)="focus=false" >
                           <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                             <div *ngIf="f.username.errors.required">Username is required</div>
                         </div> 
                       </div>
-                      <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':focus1===true}">
+                      <div class="input-group form-group-no-border " [ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+                            <span class="  input-group-text group_1 "><i class="now-ui-icons text_caps-small"></i></span>
                         </div>
                           <input type="password" formControlName="password" placeholder="Password..." class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" (focus)="focus1=true" (blur)="focus1=false"/>
                           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">

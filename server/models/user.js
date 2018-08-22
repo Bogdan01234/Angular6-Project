@@ -18,6 +18,11 @@ module.exports = function(sequelize, Sequelize) {
                 isEmail: true
             }
         },
+
+        url: {
+            type: Sequelize.STRING
+
+        },
  
         password: {
             type: Sequelize.STRING,
@@ -26,9 +31,18 @@ module.exports = function(sequelize, Sequelize) {
  
         activated: {
             type: Sequelize.INTEGER
-        }, 
+        },
+
+        admins: {
+            type: Sequelize.INTEGER
+        }
  
     });
+
+    User.associate = (models) => {
+        User.hasMany(models.posts);
+        User.hasMany(models.comments);
+      };
  
     return User;
  
