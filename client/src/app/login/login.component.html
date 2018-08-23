@@ -13,13 +13,13 @@
 
                     <div class="header text-center" style="margin-bottom: 40px" >
                             <div class="social-line">
-                                <a href="#pablo" class="btn btn-neutral btn-facebook btn-icon btn-round">
+                                <a href="#pablo" class=" circle btn btn-neutral btn-facebook btn-icon btn-round">
                                     <i class="fa fa-facebook-square"></i>
                                 </a>
-                                <a href="#pablo" class="btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
+                                <a href="#pablo" class="circle btn btn-neutral btn-twitter btn-icon btn-lg btn-round">
                                     <i class="fa fa-twitter"></i>
                                 </a>
-                                <a href="#pablo" class="btn btn-neutral btn-google btn-icon btn-round">
+                                <a href="#pablo" class="circle btn btn-neutral btn-google btn-icon btn-round">
                                     <i class="fa fa-google-plus"></i>
                                 </a>
                             </div>
@@ -27,25 +27,25 @@
                     <div class="content form-group">
                       <div class="input-group form-group-no-border " [ngClass]="{'input-group-focus':focus===true}">
                         <div class="input-group-prepend">
-                            <span class="group_1 input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
+                            <span class="group_1 group_3 input-group-text">  <i class="now-ui-icons users_circle-08"></i></span>
                         </div>
-                          <input type="text" class="form-control"  formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Name..." (focus)="focus=true" (blur)="focus=false" >
+                          <input type="text" class="form-control group_1 group_2"  formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" placeholder="Name..." (focus)="focus=true" (blur)="focus=false" >
                           <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                             <div *ngIf="f.username.errors.required">Username is required</div>
                         </div> 
                       </div>
                       <div class="input-group form-group-no-border " [ngClass]="{'input-group-focus':focus1===true}">
                         <div class="input-group-prepend">
-                            <span class="  input-group-text group_1 "><i class="now-ui-icons text_caps-small"></i></span>
+                            <span class="  input-group-text group_1  group_3"><i class="now-ui-icons text_caps-small"></i></span>
                         </div>
-                          <input type="password" formControlName="password" placeholder="Password..." class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" (focus)="focus1=true" (blur)="focus1=false"/>
+                          <input type="password" formControlName="password" placeholder="Password..." class=" group_2 form-control group_1" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" (focus)="focus1=true" (blur)="focus1=false"/>
                           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                             <div *ngIf="f.password.errors.required">Password is required</div>
                         </div>
                     </div>
                     </div>
                     <div class="footer text-center">
-                        <button [disabled]="loading" class="btn btn-primary btn-round btn-lg btn-block">Get Started</button>
+                        <button [disabled]="loading" class="btn btn-primary btn-round btn-lg btn-block button_col">Get Started</button>
                     </div>
                     <div >
                         <h6>

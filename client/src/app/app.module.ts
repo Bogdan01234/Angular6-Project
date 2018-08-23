@@ -31,6 +31,22 @@ import { MinInstructionComponent } from './min-instruction/min-instruction.compo
 import { InstructionComponent } from './min-instruction/instruction/instruction.component';
 import { CreatreInstructionComponent } from './creatre-instruction/creatre-instruction.component';
 
+import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
+import { CloudinaryConfiguration, CloudinaryModule } from '@cloudinary/angular-5.x';
+import cloudinaryConfiguration from './config';
+import { Cloudinary } from '@cloudinary/angular-5.x/src/cloudinary.service';
+
+// import { Ng2CloudinaryModule } from './../ng2-cloudinary';
+// import { FileUploadModule } from 'ng2-file-upload';
+// import { Demo } from './demo.component';
+
+import { FileDropModule } from 'ngx-file-drop';
+
+export const cloudinary = {
+  Cloudinary: CloudinaryCore
+};
+export const config: CloudinaryConfiguration = cloudinaryConfiguration;
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +61,7 @@ import { CreatreInstructionComponent } from './creatre-instruction/creatre-instr
     CreatreInstructionComponent
   ],
   imports: [
+    FileDropModule,
     NouisliderModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -59,6 +76,7 @@ import { CreatreInstructionComponent } from './creatre-instruction/creatre-instr
     MatToolbarModule,
     JWBootstrapSwitchModule,
     routing,
+    CloudinaryModule.forRoot(cloudinary, config),
     MatCardModule
   ],
   providers: [

@@ -31,75 +31,61 @@
                 <a href="#button" class="btn bg-primary2 btn-round btn-lg">Create Instructions</a>
                 <!-- <a href="#button" class="btn bg-primary2 btn-round btn-lg">Settings</a>               -->
           </div>
-          <div class="row">
+          <div class="row ">
                 <div class="col-md-12">
                     <h4 class="title text-center">My Instructions</h4>
-                      <ngb-tabset [justify]="'center'" type="pills" class="nav  nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
-                          <ngb-tab>
-                            <ng-template ngbTabTitle>
-                              <i class="now-ui-icons design_image_3"></i>
-                            </ng-template>
-                              <ng-template ngbTabContent>
-                                <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg1.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              </ng-template>
-                          </ngb-tab>
-                          <ngb-tab>
-                            <ng-template ngbTabTitle>
-                              <i class="now-ui-icons design_image_2"></i>
-                            </ng-template>
-                              <ng-template ngbTabContent>
-                                <div class="row">
-                                  <div class="col-md-10 ml-auto mr-auto">
-                                      <div class="row collections">
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg6.jpg" class="img-raised">
-                                              <img src="assets/img/bg11.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                          </div>
-                                      </div>
-                                  </div>
-                                </div>
-                              </ng-template>
-                          </ngb-tab>
-                          <ngb-tab>
-                            <ng-template ngbTabTitle>
-                              <i class="now-ui-icons design_image_4"></i>
-                            </ng-template>
-                              <ng-template ngbTabContent>
-                                
-                                            
-                                    <abe-creatre-instruction></abe-creatre-instruction>
-                                    
-                                          <!-- <div class="col-md-6">
-                                              <img src="assets/img/bg3.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                          </div>
-                                          <div class="col-md-6">
-                                              <img src="assets/img/bg7.jpg" alt="" class="img-raised">
-                                              <img src="assets/img/bg6.jpg" class="img-raised">
-                                          </div> -->
-                                     
-                                  
-                               
-                              </ng-template>
-                          </ngb-tab>
-                    </ngb-tabset>
+                        <ngb-tabset [justify]="'center'" type="pills" class="nav  nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
+                            <ngb-tab>
+                                <ng-template ngbTabTitle>
+                                <i class="now-ui-icons design_image_3"></i>
+                                </ng-template>
+                                <ng-template ngbTabContent>
+                                    <div class="row">
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="row collections">
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg1.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </ng-template>
+                            </ngb-tab>
+                            <ngb-tab>
+                                <ng-template ngbTabTitle>
+                                    <i class="now-ui-icons design_image_2"></i>
+                                </ng-template>
+                                <ng-template ngbTabContent>
+                                    <div class="row">
+                                        <div class="col-md-10 ml-auto mr-auto">
+                                            <div class="row collections">
+                                                <div class="col-md-6">
+                                                    <img src="assets/img/bg6.jpg" class="img-raised">
+                                                    <img src="assets/img/bg11.jpg" alt="" class="img-raised">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                                    <img src="assets/img/bg8.jpg" alt="" class="img-raised">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ng-template>
+                                </ngb-tab>
+                                <ngb-tab>
+                                    <ng-template ngbTabTitle>
+                                        <i class="now-ui-icons design_image_4"></i>
+                                    </ng-template>
+                                    <ng-template ngbTabContent>                             
+                                        <abe-creatre-instruction></abe-creatre-instruction>
+                                    </ng-template>
+                                </ngb-tab>
+                        </ngb-tabset>
                     <!-- <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"
                         (onHover)="hoveringOver($event)" (onLeave)="resetStar()"
                         [titles]="['one','two','three']">

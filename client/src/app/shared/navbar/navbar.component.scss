@@ -15,12 +15,25 @@
 }
 
 .input-group-text-2{
+    
+    padding: 0.375rem 0.75rem !important;
     color: #7f9ebdfa;
     background-color: #e9ecef36;
-    border: 1px solid #ced4da57;
+    // border: 1px solid #f96332 !important;
     border-radius: 1rem;
+    border-color: #d15c3500 !important;
+    border-right: 1px solid #e3e3e300 !important;
 }
 
-// .margin {
-//     margin-top: 10px;
-// }
+.margin {
+    margin-top: 10px;
+}
+
+.group_2{
+    border-left: 1px solid #e3e3e300 !important;
+  }
+  
+  
+.circle{
+    border-color: #f96332;
+}
