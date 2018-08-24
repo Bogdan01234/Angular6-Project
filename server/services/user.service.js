@@ -125,10 +125,8 @@ function create(userParam, activated) {
                     
                     if(newUser){
                     deferred.resolve();
-                    }
-                
+                    }                
             });
-
         // emailSent(user.hash)
     }
 

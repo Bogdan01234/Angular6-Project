@@ -18,11 +18,15 @@
   width: 100%;
 }
 
-.file-drop {
+/deep/ .drop-zone {
   margin: auto !important;
   height: 100px !important;
   border: 2px dotted #f96332 !important;
   border-radius: 30px;
+}
+
+/deep/ .content{
+  color: #f96332 !important;
 }
 
 @media screen and (max-width: 768px){

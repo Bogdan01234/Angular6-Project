@@ -25,15 +25,18 @@ import { HomeComponent } from './home';
 import { RegisterComponent } from './register';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
-import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular';
-import { Cloudinary } from 'cloudinary-core';
+
 // import { config } from './config';
+
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import * as  Cloudinary from 'cloudinary-core';
 
 import { AppComponent } from './app.component';
 import { routing }        from './app.routing';
 import { MinInstructionComponent } from './min-instruction/min-instruction.component';
 import { InstructionComponent } from './min-instruction/instruction/instruction.component';
 import { CreatreInstructionComponent } from './creatre-instruction/creatre-instruction.component';
+import { CreatreStepComponent } from './creatre-instruction/create.step/creatre.step.component';
 
 // import { Cloudinary as CloudinaryCore } from 'cloudinary-core';
 // import { Cloudinary } from 'cloudinary-core';
@@ -74,7 +77,8 @@ import { FileDropModule } from 'ngx-file-drop';
     LoginComponent,
     MinInstructionComponent,
     InstructionComponent,
-    CreatreInstructionComponent
+    CreatreInstructionComponent,
+    CreatreStepComponent
   ],
   imports: [
     FileDropModule,
@@ -82,6 +86,7 @@ import { FileDropModule } from 'ngx-file-drop';
     ReactiveFormsModule,
     HttpClientModule,
     InputTextareaModule,
+    CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'howtodo'}),
     // CloudinaryModule.forRoot({Cloudinary}, {cloud_name: 'howtodo'} as CloudinaryConfiguration),
     // CloudinaryModule.forRoot({Cloudinary}, { cloud_name: 'howtodo' } as CloudinaryConfiguration),
     RatingModule.forRoot(),

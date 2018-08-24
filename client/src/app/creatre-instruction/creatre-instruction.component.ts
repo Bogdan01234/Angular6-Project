@@ -8,6 +8,7 @@ import { DragAndDropModule } from 'angular-draggable-droppable';
 
 import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
 import {CloudinaryImageComponent} from 'ng2-cloudinary';
+import { UploadFile, UploadEvent, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 
 // import { NavController } from 'ionic-angular';
 
@@ -66,27 +67,52 @@ export class CreatreInstructionComponent implements OnInit {
     this.counter = 1;
   }
 
-  upload() {
-    this.uploader.uploadAll();
+  public files: UploadFile[] = [];
+ 
+  public dropped(event: UploadEvent) {
+    this.files = event.files;
+    for (const droppedFile of event.files) {
+ 
+      // Is it a file?
+      if (droppedFile.fileEntry.isFile) {
+        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+        fileEntry.file((file: File) => {
+ 
+          // Here you can access the real file
+          console.log(droppedFile.relativePath, file);
+ 
+          /**
+          // You could upload it like this:
+          const formData = new FormData()
+          formData.append('logo', file, relativePath)
+ 
+          // Headers
+          const headers = new HttpHeaders({
+            'security-token': 'mytoken'
+          })
+ 
+          this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
+          .subscribe(data => {
+            // Sanitized logo returned from backend
+          })
+          **/
+ 
+        });
+      } else {
+        // It was a directory (empty directories are added, otherwise only files)
+        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+        console.log(droppedFile.relativePath, fileEntry);
+      }
+    }
   }
-
-  allowDrop(ev) {
-    ev.preventDefault();
+ 
+  public fileOver(event){
+    console.log(event);
   }
-
-  drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
+ 
+  public fileLeave(event){
+    console.log(event);
   }
-
-  drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-  }
-
-
-
-
 
   public addNewStep() : void {   
 

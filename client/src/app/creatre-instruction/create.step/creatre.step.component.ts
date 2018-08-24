@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+
+import { UploadFile, UploadEvent, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { CloudinaryUploader, CloudinaryOptions } from 'ng2-cloudinary';
 
 
@@ -7,41 +9,67 @@ import { CloudinaryUploader, CloudinaryOptions } from 'ng2-cloudinary';
 
 @Component({
   selector: 'abe-creatre-step',
-  templateUrl: './creatre.step.instruction.component.html',
-  styleUrls: ['./creatre.step.instruction.component.scss']
+  templateUrl: './creatre.step.component.html',
+  styleUrls: ['./creatre.step.component.scss']
 })
-export class CreatreInstructionComponent implements OnInit {
+export class CreatreStepComponent implements OnInit {
 
 
   uploader: CloudinaryUploader = new CloudinaryUploader(
     new CloudinaryOptions({ cloudName: 'howtodo', uploadPreset: 'r7izmizp' })
   );
 
-  name = new FormControl('', Validators.required );
-  description = new FormControl('', Validators.required );
-  img = new FormControl('', Validators.required );
+  stepForm: FormGroup;
 
-  constructor() { }
+
+  constructor(private formBuilder: FormBuilder) { }
 
 
   ngOnInit() {
+    this.stepForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      img: ['']
+  });
+
   }
 
-  upload() {
-    this.uploader.uploadAll();
-  }
-  
-  allowDrop(ev) {
-    ev.preventDefault();
-  }
-
-  drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-  }
-
-  drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
+  public files: UploadFile[] = [];
+ 
+  public dropped(event: UploadEvent) {
+    this.files = event.files;
+    for (const droppedFile of event.files) {
+ 
+      // Is it a file?
+      if (droppedFile.fileEntry.isFile) {
+        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+        fileEntry.file((file: File) => {
+ 
+          // Here you can access the real file
+          console.log(droppedFile.relativePath, file);
+ 
+          /**
+          // You could upload it like this:
+          const formData = new FormData()
+          formData.append('logo', file, relativePath)
+ 
+          // Headers
+          const headers = new HttpHeaders({
+            'security-token': 'mytoken'
+          })
+ 
+          this.http.post('https://mybackend.com/api/upload/sanitize-and-save-logo', formData, { headers: headers, responseType: 'blob' })
+          .subscribe(data => {
+            // Sanitized logo returned from backend
+          })
+          **/
+ 
+        });
+      } else {
+        // It was a directory (empty directories are added, otherwise only files)
+        const fileEntry = droppedFile.fileEntry as FileSystemDirectoryEntry;
+        console.log(droppedFile.relativePath, fileEntry);
+      }
+    }
   }
 }
