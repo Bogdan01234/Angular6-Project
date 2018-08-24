@@ -1,4 +1,4 @@
 export default {
     cloud_name: 'howtodo',
-    upload_preset: '123123'
+    upload_preset: 'c7nvg3ie'
 };

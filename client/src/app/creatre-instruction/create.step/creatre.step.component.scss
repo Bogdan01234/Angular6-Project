@@ -8,6 +8,14 @@
   border-color: #f96332;
 }
 
+.file-drop {
+  margin: auto !important;
+  height: 100px !important;
+  border: 2px dotted #f96332 !important;
+  border-radius: 30px;
+}
+
+
 .stiles_2 {
     margin: 0 200px;
     padding-top: 30px;
@@ -16,13 +24,6 @@
 
 .step{
   width: 100%;
-}
-
-.file-drop {
-  margin: auto !important;
-  height: 100px !important;
-  border: 2px dotted #f96332 !important;
-  border-radius: 30px;
 }
 
 @media screen and (max-width: 768px){

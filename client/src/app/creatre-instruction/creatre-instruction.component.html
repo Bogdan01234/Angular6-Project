@@ -1,95 +1,52 @@
-
 <div class="stiles_2">
-    <h4 class="title text-center">Create new Instrucktion</h4>
+  <h4 class="title text-center">Create new Instrucktion</h4>
 <form >
-    <div class="form-group ">
-      <input type="text" class="form-control stiles_1" id="exampleFormControlInput1" placeholder="Name of the instruction">
-    </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Select a category</label>
-      <select class="form-control  stiles_1" id="exampleFormControlSelect1">
-        <option></option>
-        <option>Cars & Other Vehicles</option>
-        <option>Computers and Electronics</option>
-        <option>Family Life</option>
-        <option>Food and Entertaining</option>
-        <option>Health</option>
-        <option>Hobbies and Crafts</option>
-        <option>Pets and Animals</option>
-        <option>Sports and Fitness</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <input type="text" class="form-control stiles_1" id="exampleFormControlInput2" placeholder="Add a tag">
-    </div>
-    <div class="form-group ">
-      <label for="exampleFormControlTextarea1">Description of the instruction</label>
-      <textarea class="form-control  stiles_1" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
+  <div class="form-group ">
+    <input type="text" class="form-control stiles_1" [formControl]="name" id="exampleFormControlInput1" placeholder="Name of the instruction">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select a category</label>
+    <select class="form-control  stiles_1" id="exampleFormControlSelect1" [formControl]="categories">
+      <option></option>
+      <option *ngFor="let categories of categories" [value]="categories.value">{{categories.value}}</option>
+    </select>
+  </div>
+  <div class="form-group ">
+    <label for="exampleFormControlTextarea1">Description of the step</label>
+    <textarea class="form-control  stiles_1" id="exampleFormControlTextarea1" [formControl]="description" rows="3"></textarea>
+  </div>
 
-    <div class="center">
-      <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" 
-        (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-      </file-drop>
-      <div class="upload-table">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody class="upload-name-style">
-                <tr *ngFor="let item of allFiles; let i=index">
-                    <td><strong>{{ item.relativePath }}</strong></td>
-                </tr>
-            </tbody>
-        </table>
-      </div>
-    </div>
-   <div id = "step">
-    <p>
-        <button class="btn btn-primary btn bg-primary2 btn-round btn-lg step" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          Step
-        </button>
-      </p>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-                 
-      
-    <div class="form-group ">
-      <input type="email" class="form-control stiles_1" id="exampleFormControlInput1" placeholder="Name of the step">
-    </div>
-    <div class="form-group ">
-      <label for="exampleFormControlTextarea1">Description of the step</label>
-      <textarea class="form-control  stiles_1" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-
-    <div class="center">
-      <file-drop headertext="Drop files here" (onFileDrop)="dropped($event)" 
-        (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-      </file-drop>
-      <div class="upload-table">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                </tr>
-            </thead>
-            <tbody class="upload-name-style">
-                <tr *ngFor="let item of allFiles; let i=index">
-                    <td><strong>{{ item.relativePath }}</strong></td>
-                </tr>
-            </tbody>
-        </table>
-      </div>
-    </div>
-
-    <button class=" btn bg-primary2 btn-round btn-lg" type="button">
-        Next Step
+  
+  
+  <div class="center file-drop" 
+      (drop)="drop($event)" 
+      (dragover)="allowDrop($event)">     
+  </div>
+ 
+ <div id = "step">
+  <p>
+      <button class="btn btn-primary btn bg-primary2 btn-round btn-lg step" type="button" >
+        Step 1 
       </button>
-     </div>       
-      </div> 
-   </div>      
-  </form>
+    </p>                
+    
+  <div class="form-group ">
+    <input type="email" class="form-control stiles_1" id="exampleFormControlInput1" placeholder="Name of the step">
+  </div>
+  <div class="form-group ">
+    <label for="exampleFormControlTextarea1">Description of the step</label>
+    <textarea class="form-control  stiles_1" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+    <div class="center file-drop" 
+    (drop)="drop($event)" 
+    (dragover)="allowDrop($event)">     
+  </div>    
+</div> 
+  <button id = 'addNewStep' (click) = 'addNewStep()' class=" btn bg-primary2 btn-round btn-lg step" type="button">
+      Next Step
+    </button>          
+    
+      
+</form>
 </div>
 

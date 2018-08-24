@@ -5,6 +5,8 @@ import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/platform-browser';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { NavbarComponent } from './shared/navbar/navbar.component';
+import { add } from 'ngx-bootstrap/chronos';
+import * as cloudinary from 'cloudinary-core';
 
 @Component({
   selector: 'abe-root',
@@ -27,7 +29,7 @@ export class AppComponent implements OnInit {
           }else{
               window.document.activeElement.scrollTop = 0;
           }
-          this.navbar.sidebarClose();
+        //   this.navbar.sidebarClose();
 
           this.renderer.listenGlobal('window', 'scroll', (event) => {
               const number = window.scrollY;
@@ -42,5 +44,22 @@ export class AppComponent implements OnInit {
               }
           });
       });
+
+
+
+    // add(){
+    //     document.getElementById("upload_widget_opener").addEventListener("click", () => {
+    //         cloudinary.openUploadWidget({ cloud_name: 'howtodo', upload_preset: 'howtodo'}, 
+    //     function(error, result) { console.log(error, result) });
+    //     }, false);
+    //     }
+
+
   }
+
+
+
+
+  
+
 }
