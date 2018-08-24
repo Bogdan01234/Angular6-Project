@@ -35,6 +35,7 @@ export class CreatreStepComponent implements OnInit {
   }
 
   public files: UploadFile[] = [];
+  public allFiles: UploadFile[] = [];
  
   public dropped(event: UploadEvent) {
     this.files = event.files;
@@ -42,6 +43,9 @@ export class CreatreStepComponent implements OnInit {
  
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
+        
+        this.allFiles.push(droppedFile);
+
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
  
@@ -71,5 +75,10 @@ export class CreatreStepComponent implements OnInit {
         console.log(droppedFile.relativePath, fileEntry);
       }
     }
+
+    this.stepForm.value.img = this.allFiles;
+
+    console.log(this.stepForm);
+
   }
 }

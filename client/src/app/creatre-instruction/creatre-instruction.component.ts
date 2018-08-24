@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { UploadFile, UploadEvent, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { Categories } from '../interfase/index'
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CustomCompileService } from '../custom-compile-service/index';
 
 import { DragAndDropModule } from 'angular-draggable-droppable';
@@ -45,12 +45,14 @@ export class CreatreInstructionComponent implements OnInit {
 
   
   public counter: number;
+  
+  stepForm: FormGroup;
 
   // public allFiles: UploadFile[] = [];
   // public files: UploadFile[] = [];
   public step: Node;
 
-  constructor() { 
+  constructor(private formBuilder: FormBuilder) { 
       // this.uploader.onSuccessItem = (item: any, response: string, status: number, headers: any): any => {
       // let res: any = JSON.parse(response);
       // this.imageId = res.public_id;
@@ -58,16 +60,22 @@ export class CreatreInstructionComponent implements OnInit {
     // };
   }
 
-  name = new FormControl('', Validators.required );
-  category = new FormControl('', Validators.required );
-  description = new FormControl('', Validators.required );
 
   ngOnInit() {
+
+    this.stepForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      category:['', Validators.required],
+      img: ['']
+  });
+
     this.step = document.getElementById("step").cloneNode(true);
     this.counter = 1;
   }
 
   public files: UploadFile[] = [];
+  public allFiles: UploadFile[] = [];
  
   public dropped(event: UploadEvent) {
     this.files = event.files;
@@ -75,6 +83,9 @@ export class CreatreInstructionComponent implements OnInit {
  
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
+        
+        this.allFiles.push(droppedFile);
+
         const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
         fileEntry.file((file: File) => {
  
@@ -104,6 +115,11 @@ export class CreatreInstructionComponent implements OnInit {
         console.log(droppedFile.relativePath, fileEntry);
       }
     }
+
+    this.stepForm.value.img = this.allFiles;
+
+    console.log(this.stepForm);
+
   }
  
   public fileOver(event){
