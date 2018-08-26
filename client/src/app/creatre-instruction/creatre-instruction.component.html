@@ -1,7 +1,7 @@
 
 <div class="stiles_2">
     <h4 class="title text-center">Create new Instrucktion</h4>
-<form [formGroup]="stepForm">
+<form [formGroup]="mainForm">
     <div class="form-group ">
       <input type="text" class="form-control stiles_1" formControlName="name" id="exampleFormControlInput1" placeholder="Name of the instruction">
     </div>
@@ -35,17 +35,18 @@
       </div>
   </div>   
 </form>
-<!-- <abe-creatre-step></abe-creatre-step> -->
+
     <div *ngFor = "let item of instruction; index as i" >
       <abe-creatre-step #stepForm1  ></abe-creatre-step>
       <button (click) = 'addNewStep(stepForm1.stepForm1); hidden[i] = true' *ngIf ="!hidden[i]"  class=" btn bg-primary2 btn-round btn-lg step" type="button">
         Next Step
       </button> 
+      <button (click) = 'createInstruction(stepForm1.stepForm1); hidden[i] = true' *ngIf ="!hidden[i]" class=" btn bg-primary2 btn-round btn-lg step"type="button">
+        Create Instruction
+      </button>  
     </div>
          
 
 </div>
-<button (click) = 'createInstruction(stepForm1.stepForm1)' class=" btn bg-primary2 btn-round btn-lg step" type="button">
-  Create Instruction
-</button>  
+
 

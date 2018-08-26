@@ -6,6 +6,7 @@ import { Post } from '../_models';
 import { Step } from '../_models';
 import { Comment } from '../_models';
 import { appConfig } from '../app.config';
+import { Appload } from '../interfase/index'
 
 
 @Injectable({
@@ -22,11 +23,6 @@ export class AllService {
   }
 
   addComment(comment: FormData) : Observable<Comment> {
-    return this.http.post<Comment>(appConfig.apiUrl + '/comment/', comment);
-   }
-
-   
-   editComment(comment: FormData) : Observable<Comment> {
     return this.http.post<Comment>(appConfig.apiUrl + '/comment/', comment);
    }    
 
@@ -51,7 +47,10 @@ export class AllService {
   }
 
   getUserPosts(login: string): Observable<Post[]> {
-    return this.http.get<Post[]>(appConfig.apiUrl + '/return_user_posts'+login)
+    return this.http.get<Post[]>(appConfig.apiUrl + '/return_user_posts' + login)
   }
-  
+
+  addPosts(instruction: Appload[]) : Observable<Appload[]> {
+    return this.http.post<Appload[]>(appConfig.apiUrl + '/addinstruction', instruction)
+  }
 }

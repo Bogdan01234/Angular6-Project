@@ -19,8 +19,8 @@ export class CreatreStepComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
 
+
   ngOnInit() {
-    debugger
     this.stepForm1 = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
@@ -29,7 +29,7 @@ export class CreatreStepComponent implements OnInit {
   }
 
   
-public files: UploadFile[] = [];
+  public files: UploadFile[] = [];
   public allFiles: UploadFile[] = [];
  
   public dropped(event: UploadEvent) {

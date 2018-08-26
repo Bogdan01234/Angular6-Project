@@ -16,7 +16,11 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING
 
         },
- 
+
+        categories: {
+            type: Sequelize.STRING
+        }, 
+        
         content: {
             type: Sequelize.TEXT
         }        

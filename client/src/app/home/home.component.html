@@ -1,5 +1,4 @@
 ﻿<div class="page-header page-header2" >
-    <!-- <div class="page-header-image" data-parallax="true" style="background-image:url('./assets/img/header.jpg');"></div> -->
     <div class="content-center">
         <h1 class="title">Admin panel</h1>    
     </div>
@@ -25,7 +24,6 @@
                             <input type="checkbox" value="{{user.id}}" [ngModel]="checked" #checkbox (change)="check(checkbox, checkbox.checked)"   [(ngModel)]="disabled">
                         </td>  
                         <th scope="row">{{i + 1}}</th>
-                        <!-- <input type="checkbox" [formControlName]="i"> {{users1[i]._id}} -->
                         <td><a class="stile1" [routerLink]="['/profile']">{{user.username}}</a></td>              
                         <td>({{user.email}})</td>  
                         <td>({{user.activated}})</td>                                           
@@ -34,5 +32,3 @@
     </table>
 </div> 
     
-
-<!-- - <a (click)="deleteUser(user._id)">Delete</a> -->
