@@ -6,12 +6,14 @@ var userService = require('services/user.service');
 // routes
 router.post('/authenticate', authenticate);
 router.post('/register', register);
+router.post('/comment', addComment);
+router.get('/comment', getComment);
 router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:id', update);
 router.get('/:id', blocking);
+router.get('/:name', getByName);
 router.get('/unblock/:id', unblock);
-router.get('/activate/:hash', activate);
 router.delete('/:id', _delete);
 
 module.exports = router;
@@ -42,11 +44,33 @@ function register(req, res) {
         });
 }
 
+
+function addComment(req, res) {
+    userService.addComment(comment)
+        .then(function () {
+            res.json('success');
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
 function getAll(req, res) {
     userService.getAll()
         .then(function (users) {
             console.log(users);
             res.send(users);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function getComment(req, res) {
+    userService.getComment(req.postId, req.login)
+        .then(function (comment) {
+            console.log(comment);
+            res.send(comment);
         })
         .catch(function (err) {
             res.status(400).send(err);
@@ -88,6 +112,17 @@ function _delete(req, res) {
         });
 }
 
+function getByName(req, res) {
+    userService.getByName(req.username)
+        .then(function (users) {
+            console.log(users);
+            res.send(users);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
 function blocking(req, res) {
     var deleteSelf = req.user.sub === req.params.id;
     userService.blocking(req.params.id)
@@ -110,13 +145,7 @@ function unblock(req, res) {
         });
 }
 
-function activate(req, res) {
-    var enter = req.user.password == req.params.hash
-    if (enter){
-        console.log("BLAAA");
-    }
-    console.log("OOOO");
-}
+
 
 
 

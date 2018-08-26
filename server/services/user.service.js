@@ -4,10 +4,12 @@ var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
 var mongo = require('mongoskin');
-var db = mongo.db(config.connectionString, { native_parser: true });
-db.bind('users');
+// var db = mongo.db(config.connectionString, { native_parser: true });
+// db.bind('users');
 
 var User  = require('../models').user;
+
+var Comment  = require('../models').comments;
 
 var index = require('../models/index');
 
@@ -20,11 +22,13 @@ service.authenticate = authenticate;
 service.getAll = getAll;
 service.getById = getById;
 service.create = create;
+service.addComment = addComment;
+service.getComment = getComment;
 service.update = update;
 service.blocking = blocking;
 service.unblock = unblock;
 service.delete = _delete;
-
+service.getByName = getByName;
 
 
 module.exports = service;
@@ -70,10 +74,42 @@ function getAll() {
     return deferred.promise;
 }
 
+function getComment(postId, login) {
+    var deferred = Q.defer();
+    
+    Comment.findAll({ where: { id: postId, userName: login, raw: true}}).then(function(users){
+        // projects will be an array of all Project instances
+        comment = _.map(comment, function (comment) {
+            return _.omit(comment, 'hash');
+        });
+
+        deferred.resolve(comment);
+      });    
+
+    return deferred.promise;
+}
+
 function getById(id) {
     var deferred = Q.defer();
 
     User.findById(id)
+    .then(function (user) {
+        if (user) {
+            // return user (without hashed password)
+            deferred.resolve(_.omit(user, 'hash'));
+        } else {
+            // user not found
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+}
+
+function getByName(username) {
+    var deferred = Q.defer();
+
+    User.findOne({ where: {username: username} })
     .then(function (user) {
         if (user) {
             // return user (without hashed password)
@@ -127,40 +163,24 @@ function create(userParam, activated) {
                     deferred.resolve();
                     }                
             });
-        // emailSent(user.hash)
     }
+    return deferred.promise;
+}
 
-    function emailSent(hash){
-    
-        var nodemailer = require('nodemailer');
 
-        var transporter = nodemailer.createTransport({
-            service: 'mail.ru',
-            auth: {
-            user: 'bogdan01234@mail.ru',
-            pass: 'rfntymrf0123'
-            }
-        });
-        
-        var mailOptions = {
-    
-            from: 'bogdan01234@mail.ru',
-            to: userParam.email,
-            subject: 'Sending Email using Node.js',
-            text: 'http://localhost:4000/users/activate/?hash=' + hash
-        
-        };
-    
-    
-        transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email sent: ' + info.response);
-            }
-        });
-    }
+function addComment(comment) {
+    var deferred = Q.defer();
 
+    Comment.create(comment)
+    .then(function (newComment, created) {
+                
+        if (!newComment){
+            deferred.reject(err.name + ': ' + err.message);
+        } else if (newComment){
+            deferred.resolve();
+        }                
+    });
+    
     return deferred.promise;
 }
 

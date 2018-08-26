@@ -1,0 +1,21 @@
+<div id='commentsGroup' *ngFor="let comment of comments">
+                                   
+  <div class="container">
+        <div id='avatar'>
+                <a routerLink='/user/{{comment.userName}}'><img src="{{comment.authorAvatar}}" class="rounded-circle img-fluid" alt="Sample avatar"></a>
+        </div>
+        <div id='commentText'>
+          <a routerLink='/user/{{comment.userName}}'>
+            <h6>{{comment.userName}}</h6>
+          </a>
+            <p>{{comment.content}}</p>
+        </div>
+  </div>
+  <br/><hr class='mt-2'/>
+
+</div>
+<div class="md-form">
+    <i class="fa fa-send prefix blue-text" (click)='addComment()'></i>
+   <textarea type="text" id="commentField" [formControl]="comment" class="md-textarea md-textarea-auto form-control" (keydown.enter)="keypress($event)" placeholder="Tell us something..."  mdbInputDirective></textarea>
+   <label for="form7">Leave your comment</label>
+</div> 

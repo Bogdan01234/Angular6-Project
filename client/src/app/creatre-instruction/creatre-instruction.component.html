@@ -17,8 +17,7 @@
       <textarea class="form-control  stiles_1" id="exampleFormControlTextarea1" formControlName="description" rows="3"></textarea>
     </div>
     <div class="center">
-      <file-drop id = "file-drop" headertext="Drop files here" (onFileDrop)="dropped($event)" 
-      (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+      <file-drop id = "file-drop" headertext="Drop files here" (onFileDrop)="dropped($event)" >
       </file-drop>
       <div class="upload-table">
           <table class="table">
@@ -34,15 +33,19 @@
               </tbody>
           </table>
       </div>
-  </div>
-   
+  </div>   
 </form>
-   
-    <abe-creatre-step id = "step"></abe-creatre-step>
-  
-    <button id = 'addNewStep' (click) = 'addNewStep()' class=" btn bg-primary2 btn-round btn-lg step" type="button">
+<!-- <abe-creatre-step></abe-creatre-step> -->
+    <div *ngFor = "let item of instruction; index as i" >
+      <abe-creatre-step #stepForm1  ></abe-creatre-step>
+      <button (click) = 'addNewStep(stepForm1.stepForm1); hidden[i] = true' *ngIf ="!hidden[i]"  class=" btn bg-primary2 btn-round btn-lg step" type="button">
         Next Step
-      </button>     
-  
+      </button> 
+    </div>
+         
+
 </div>
+<button (click) = 'createInstruction(stepForm1.stepForm1)' class=" btn bg-primary2 btn-round btn-lg step" type="button">
+  Create Instruction
+</button>  
 

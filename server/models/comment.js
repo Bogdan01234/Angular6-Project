@@ -1,11 +1,15 @@
 module.exports = function(sequelize, Sequelize) {
  
-    var Comments = sequelize.define('comments', {
+    var Comment = sequelize.define('comment', {
  
         id: {
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
+        },
+
+        username: {
+            type: Sequelize.STRING
         },
  
         content: {
@@ -14,21 +18,21 @@ module.exports = function(sequelize, Sequelize) {
  
     });
 
-    Comments.associate = (models) => {
+    Comment.associate = (models) => {
 
-        Comments.belongsTo(models.user, {
+        Comment.belongsTo(models.user, {
                 foreignKey: {
                 allowNull: false,
             },
         });
 
-        Comments.belongsTo(models.posts, {
+        Comment.belongsTo(models.posts, {
             foreignKey: {
               allowNull: false,
             },
         });
     };
  
-    return Comments;
+    return Comment;
  
 }

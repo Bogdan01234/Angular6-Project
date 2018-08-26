@@ -60,6 +60,7 @@ import { FileUploadModule } from 'ng2-file-upload';
 
 
 import { FileDropModule } from 'ngx-file-drop';
+import { CommentsComponent } from './min-instruction/instruction/comments/comments.component';
 
 // export const cloudinary = {
 //   Cloudinary: CloudinaryCore
@@ -78,7 +79,8 @@ import { FileDropModule } from 'ngx-file-drop';
     MinInstructionComponent,
     InstructionComponent,
     CreatreInstructionComponent,
-    CreatreStepComponent
+    CreatreStepComponent,
+    CommentsComponent
   ],
   imports: [
     FileDropModule,

@@ -13,6 +13,10 @@ export class UserService {
         return this.http.get<User[]>(appConfig.apiUrl + '/users');
     }
 
+    getByName(username: string):Observable<User> {
+        return this.http.get<User>(appConfig.apiUrl + '/users/' + username);
+    }
+
     getById(id: string):Observable<Object> {
         return this.http.get<Object>(appConfig.apiUrl + '/users/' + id);
     }

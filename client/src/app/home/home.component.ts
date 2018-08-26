@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
             if (response.deleteSelf) {
                 localStorage.removeItem('currentUser');
                 this.router.navigate(['/login']);
-            }else {
+            } else {
                 this.loadAllUsers();
             } 
         });

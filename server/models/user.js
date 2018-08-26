@@ -23,6 +23,9 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING
 
         },
+        admin: {
+            type: Sequelize.INTEGER,
+        },
  
         password: {
             type: Sequelize.STRING,
@@ -41,7 +44,7 @@ module.exports = function(sequelize, Sequelize) {
 
     User.associate = (models) => {
         User.hasMany(models.posts);
-        User.hasMany(models.comments);
+        User.hasMany(models.comment);
       };
  
     return User;

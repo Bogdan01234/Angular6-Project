@@ -9,6 +9,7 @@ import { AuthGuard } from './_guards';
 import { InstructionComponent } from './min-instruction/instruction/instruction.component';
 import { CreatreInstructionComponent } from './creatre-instruction/creatre-instruction.component';
 
+
 const appRoutes: Routes = [
     { path: '', component: LandingComponent },
     { path: 'login', component: LoginComponent },
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
     { path: 'instruction', component: InstructionComponent },
     { path: 'create', component: CreatreInstructionComponent },
+
 
 
     // otherwise redirect to home

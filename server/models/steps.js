@@ -9,7 +9,7 @@ module.exports = function(sequelize, Sequelize) {
         },
 
         stepName: {
-            type: Sequelize.TEXT
+            type: Sequelize.STRING
         },
 
         url: {

@@ -9,12 +9,15 @@ module.exports = function(sequelize, Sequelize) {
         },
 
         postName: {
-            type: Sequelize.TEXT
+            type: Sequelize.STRING
         },
  
         categories: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        username: {
+            type: Sequelize.STRING
         },
 
         url: {
@@ -24,6 +27,10 @@ module.exports = function(sequelize, Sequelize) {
  
         content: {
             type: Sequelize.TEXT
+        },
+
+        numSteps: {
+            type: Sequelize.INTEGER
         }        
  
     });
@@ -35,7 +42,7 @@ module.exports = function(sequelize, Sequelize) {
             },
         });
         Posts.hasMany(models.steps);
-        Posts.hasMany(models.comments);        
+        Posts.hasMany(models.comment);        
       };
  
     return Posts;
