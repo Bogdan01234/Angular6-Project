@@ -4,6 +4,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AllService } from '../_services/all.service';
 import { UserService} from '../_services/user.service';
 import { UploadFile, UploadEvent, FileSystemDirectoryEntry } from 'ngx-file-drop';
+import { User } from '../_models/index';
 
 
 
@@ -15,7 +16,8 @@ import { UploadFile, UploadEvent, FileSystemDirectoryEntry } from 'ngx-file-drop
 })
 
 export class CreatreInstructionComponent implements OnInit {
-
+  
+  currentUser: User;
   hidden: boolean [] = [];
   imageId: string;
 
@@ -34,12 +36,13 @@ export class CreatreInstructionComponent implements OnInit {
   ]; 
 
   
-  public counter: number = 0;  
   public mainForm: FormGroup;
   public instruction: Appload [] = [];
   public step: Node;
 
-  constructor(private allService: AllService, private formBuilder: FormBuilder) {   }
+  constructor(private allService: AllService, private formBuilder: FormBuilder) { 
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  }
 
 
   ngOnInit() {
@@ -62,10 +65,12 @@ export class CreatreInstructionComponent implements OnInit {
   public createInstruction(stepForm1){
     this.instruction.shift();
     this.instruction.unshift(this.mainForm.value);
-    this.instruction.push(stepForm1.value);
-    window.location.reload();
-    this.allService.addPosts
-    alert("Instruction created");
+    this.instruction[0].username = this.currentUser.username;    
+    this.instruction.push(stepForm1.value);    
+    this.allService.addPosts(this.instruction);
+    console.log(this.instruction);
+    // alert("Instruction created");
+    // window.location.reload();
   }
 
   public files: UploadFile[] = [];

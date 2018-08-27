@@ -19,7 +19,6 @@ export class CreatreStepComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
 
-
   ngOnInit() {
     this.stepForm1 = this.formBuilder.group({
       name: ['', Validators.required],

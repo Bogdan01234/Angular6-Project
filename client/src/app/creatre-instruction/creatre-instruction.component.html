@@ -1,52 +1,56 @@
 
 <div class="stiles_2">
-    <h4 class="title text-center">Create new Instrucktion</h4>
-<form [formGroup]="mainForm">
-    <div class="form-group ">
-      <input type="text" class="form-control stiles_1" formControlName="name" id="exampleFormControlInput1" placeholder="Name of the instruction">
+        <h4 class="title text-center">Create new Instrucktion</h4>
+    <form [formGroup]="mainForm">
+        <div class="form-group ">
+          <input type="text" class="form-control stiles_1" formControlName="name" id="exampleFormControlInput1" placeholder="Name of the instruction">
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Select a category</label>
+          <select class="form-control  stiles_1" id="exampleFormControlSelect1" formControlName="category">
+            <option></option>
+            <option *ngFor="let categories of categories" [value]="categories.value">{{categories.value}}</option>
+          </select>
+        </div>
+        <div class="form-group ">
+          <label for="exampleFormControlTextarea1">Description of the step</label>
+          <textarea class="form-control  stiles_1" id="exampleFormControlTextarea1" formControlName="description" rows="3"></textarea>
+        </div>
+        <div class="center">
+          <file-drop id = "file-drop" headertext="Drop files here" (onFileDrop)="dropped($event)" >
+          </file-drop>
+          <div class="upload-table">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Name</th>
+                      </tr>
+                  </thead>
+                  <tbody class="upload-name-style">
+                      <tr *ngFor="let item of files; let i=index">
+                          <td><strong>{{ item.relativePath }}</strong></td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>   
+    </form>
+    
+        <div *ngFor = "let item of instruction; index as i" >
+        <p>
+            <button class="btn btn-primary btn bg-primary2 btn-round btn-lg step"type="button" >
+                Step {{i + 1}} 
+            </button>
+        </p>  
+        <abe-creatre-step #stepForm1></abe-creatre-step>
+        <button (click) = 'addNewStep(stepForm1.stepForm1); hidden[i] = true' *ngIf ="!hidden[i]"  class=" btn bg-primary2 btn-round btn-lg step" type="button">
+            Next Step
+        </button> 
+        <button (click) = 'createInstruction(stepForm1.stepForm1); hidden[i] = true' *ngIf ="!hidden[i]" class=" btn bg-primary2 btn-round btn-lg step"type="button">
+            Create Instruction
+        </button>  
     </div>
-    <div class="form-group">
-      <label for="exampleFormControlSelect1">Select a category</label>
-      <select class="form-control  stiles_1" id="exampleFormControlSelect1" formControlName="category">
-        <option></option>
-        <option *ngFor="let categories of categories" [value]="categories.value">{{categories.value}}</option>
-      </select>
-    </div>
-    <div class="form-group ">
-      <label for="exampleFormControlTextarea1">Description of the step</label>
-      <textarea class="form-control  stiles_1" id="exampleFormControlTextarea1" formControlName="description" rows="3"></textarea>
-    </div>
-    <div class="center">
-      <file-drop id = "file-drop" headertext="Drop files here" (onFileDrop)="dropped($event)" >
-      </file-drop>
-      <div class="upload-table">
-          <table class="table">
-              <thead>
-                  <tr>
-                      <th>Name</th>
-                  </tr>
-              </thead>
-              <tbody class="upload-name-style">
-                  <tr *ngFor="let item of files; let i=index">
-                      <td><strong>{{ item.relativePath }}</strong></td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-  </div>   
-</form>
-
-    <div *ngFor = "let item of instruction; index as i" >
-      <abe-creatre-step #stepForm1  ></abe-creatre-step>
-      <button (click) = 'addNewStep(stepForm1.stepForm1); hidden[i] = true' *ngIf ="!hidden[i]"  class=" btn bg-primary2 btn-round btn-lg step" type="button">
-        Next Step
-      </button> 
-      <button (click) = 'createInstruction(stepForm1.stepForm1); hidden[i] = true' *ngIf ="!hidden[i]" class=" btn bg-primary2 btn-round btn-lg step"type="button">
-        Create Instruction
-      </button>  
-    </div>
-         
-
 </div>
-
-
+    
+    
+    

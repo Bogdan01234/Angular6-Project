@@ -3,13 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatStepper} from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AllService } from '../../_services/all.service';
-import { HttpClient } from '@angular/common/http';
-
 import { UserService} from '../../_services/user.service';
-
-// import { UserCard } from '../user-card';
-// import { PostCard } from '../post-card';
-// import { Step } from '../step';
 
 import { Post } from '../../_models';
 import { User } from '../../_models';

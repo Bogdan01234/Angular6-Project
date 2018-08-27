@@ -50,7 +50,9 @@ export class AllService {
     return this.http.get<Post[]>(appConfig.apiUrl + '/return_user_posts' + login)
   }
 
-  addPosts(instruction: Appload[]) : Observable<Appload[]> {
-    return this.http.post<Appload[]>(appConfig.apiUrl + '/addinstruction', instruction)
+  addPosts(instruction) {
+    console.log(instruction, "heeer")
+  
+    return this.http.post(appConfig.apiUrl + '/instruction', instruction)
   }
 }

@@ -3,17 +3,23 @@ var _ = require('lodash');
 var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
-var mongo = require('mongoskin');
-// var db = mongo.db(config.connectionString, { native_parser: true });
-// db.bind('users');
+
+var cloudinary = require('cloudinary');
 
 var User  = require('../models').user;
 
 var Comment  = require('../models').comments;
 
+var  Posts = require('../models').posts;
+var  Steps = require('../models').steps;
+
 var index = require('../models/index');
 
-
+cloudinary.config({ 
+    cloud_name: 'howtodo', 
+    api_key: '544156768387412', 
+    api_secret: 'qsgBxIUX76VTB6mmxR2NJnCqIQA' 
+});
 
 
 var service = {};
@@ -29,7 +35,7 @@ service.blocking = blocking;
 service.unblock = unblock;
 service.delete = _delete;
 service.getByName = getByName;
-
+service.addPosts = addPosts;
 
 module.exports = service;
 
@@ -126,8 +132,6 @@ function getByName(username) {
 function create(userParam, activated) {
     var deferred = Q.defer();
 
-    
-
     // validation
     User.findOne({where:
         { username: userParam.username }})
@@ -177,6 +181,32 @@ function addComment(comment) {
         if (!newComment){
             deferred.reject(err.name + ': ' + err.message);
         } else if (newComment){
+            deferred.resolve();
+        }                
+    });
+    
+    return deferred.promise;
+}
+
+function addPosts(instruction) {
+    var deferred = Q.defer();
+
+    var post = _.omit(instruction[0].name, instruction[0].categories,instruction[0].username , instruction[0].content, instruction.lenght - 1, 'url');
+    // var steps = _.omit(userParam,'password', 'activated');
+
+    cloudinary.uploader.upload(instruction[0].url, function(result) { 
+        post.url = result.secure_url;
+    });
+
+
+
+
+    Posts.create(post)
+    .then(function (newPost, created) {
+                
+        if (!newPost){
+            deferred.reject(err.name + ': ' + err.message);
+        } else if (newPost){
             deferred.resolve();
         }                
     });

@@ -1,6 +1,6 @@
 export class Post {
     id: Number;
-    postName: string;
+    postname: string;
     categories: string;
     content: string;
     username: string;

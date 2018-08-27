@@ -7,6 +7,7 @@ var userService = require('services/user.service');
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.post('/comment', addComment);
+
 router.get('/comment', getComment);
 router.get('/', getAll);
 router.get('/current', getCurrent);
@@ -46,7 +47,7 @@ function register(req, res) {
 
 
 function addComment(req, res) {
-    userService.addComment(comment)
+    userService.addComment(req.comment)
         .then(function () {
             res.json('success');
         })
@@ -54,6 +55,8 @@ function addComment(req, res) {
             res.status(400).send(err);
         });
 }
+
+
 
 function getAll(req, res) {
     userService.getAll()

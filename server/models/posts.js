@@ -8,7 +8,7 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.INTEGER
         },
 
-        postName: {
+        postname: {
             type: Sequelize.STRING
         },
  
