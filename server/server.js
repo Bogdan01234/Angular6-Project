@@ -29,7 +29,7 @@ app.use(expressJwt({
 
 // routes
 app.use('/users', require('./controllers/users.controller'));
-app.use('/instruction', require('./controllers/instruction.controller'));
+// app.use('/instruction', require('./controllers/instruction.controller'));
 // error handler
 app.use(function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {

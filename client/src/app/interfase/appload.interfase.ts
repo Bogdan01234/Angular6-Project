@@ -1,4 +1,3 @@
-
 export interface Appload {
     name: string,
     description: string,

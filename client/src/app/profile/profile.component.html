@@ -5,9 +5,9 @@
         <div class="container">
             <div class="content-center">
                 <div class="photo-container">
-                    <img src="assets/img/ryan.jpg" alt="">
+                    <!-- <img src="{{user.avatar}}" alt=""> -->
                 </div>
-                <h3 class="title">Ryan Scheinder</h3>
+                <!-- <h3 class="title">{{user.username}}</h3> -->
                 <div class="content">
                     <div class="social-description">
                         <h2>26</h2>
@@ -41,13 +41,14 @@
                                     <div class="row">
                                     <div class="col-md-10 ml-auto mr-auto">
                                         <div class="row collections">
-                                            <div class="col-md-6">
-                                                <img src="assets/img/bg1.jpg" alt="" class="img-raised">
-                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">
+                                            <div class="col-md-6 col-md-new">
+                                                    <abe-min-instruction></abe-min-instruction>
                                             </div>
-                                            <div class="col-md-6">
-                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
-                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                            <div class="col-md-6 col-md-new">
+                                                    <abe-min-instruction></abe-min-instruction>
+                                            </div>
+                                            <div class="col-md-6 col-md-new">
+                                                    <abe-min-instruction></abe-min-instruction>
                                             </div>
                                         </div>
                                     </div>
@@ -84,24 +85,6 @@
                                     </ng-template>
                                 </ngb-tab>
                         </ngb-tabset>
-                    <!-- <rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"
-                        (onHover)="hoveringOver($event)" (onLeave)="resetStar()"
-                        [titles]="['one','two','three']">
-                    </rating>
-                    <span class="label"
-                        [ngClass]="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
-                        [ngStyle]="{display: (overStar && !isReadonly) ? 'inline' : 'none'}">{{percent}}%</span>
-                    <div class="card">
-                        <pre class="card-block card-header" style="margin:15px 0;">
-                            Rate: <b>{{rate}}</b>;  Readonly is: <i>{{isReadonly}}</i>;
-                            Hovering over: <b>{{overStar || "none"}}</b></pre>
-                    </div> 
-                    <button type="button" class="btn btn-sm btn-danger" (click)="rate = 0"
-                        [disabled]="isReadonly">Clear
-                    </button>
-                    <button type="button" class="btn btn-sm btn-primary" 
-                    (click)="isReadonly = ! isReadonly">Toggle Readonly
-                    </button> -->
                 </div>
             </div>
         </div>

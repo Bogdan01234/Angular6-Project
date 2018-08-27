@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Post } from '../_models/index';
 
 @Component({
   selector: 'abe-min-instruction',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./min-instruction.component.scss']
 })
 export class MinInstructionComponent implements OnInit {
+
+
+  @Input() postCards: Post[];
 
   constructor() { }
 

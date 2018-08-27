@@ -50,9 +50,10 @@ export class AllService {
     return this.http.get<Post[]>(appConfig.apiUrl + '/return_user_posts' + login)
   }
 
-  addPosts(instruction) {
-    console.log(instruction, "heeer")
+  addPosts(arrayAppload) {
+    console.log(arrayAppload, "heeer")
   
-    return this.http.post(appConfig.apiUrl + '/instruction', instruction)
+    return this.http.post(appConfig.apiUrl + '/users/instruction', arrayAppload);
   }
+  
 }

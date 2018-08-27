@@ -17,8 +17,8 @@ export class UserService {
         return this.http.get<User>(appConfig.apiUrl + '/users/' + username);
     }
 
-    getById(id: string):Observable<Object> {
-        return this.http.get<Object>(appConfig.apiUrl + '/users/' + id);
+    getById(id: string):Observable<User>{
+        return this.http.get<User>(appConfig.apiUrl + '/users/' + id);
     }
 
     create(user: User) {
@@ -40,4 +40,14 @@ export class UserService {
     unblock(id: string){
         return this.http.get(appConfig.apiUrl + '/users/unblock/' + id);
     }
+
+    addAdmin(id: string){
+        return this.http.get(appConfig.apiUrl + '/users/addAdmin/' + id);
+    }
+
+    deleteAdmin(id: string){
+        return this.http.get(appConfig.apiUrl + '/users/deleteAdmin/' + id);
+    }
+
+    
 }

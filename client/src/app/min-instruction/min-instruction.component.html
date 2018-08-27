@@ -1,6 +1,9 @@
- <div class="card " style="width: 18rem;">
-  <img class="card-img-top" src="assets/img/bg6.jpg" alt="Card image cap">
-  <div class="card-body card_2">
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+<div class="stiles_2" >
+<div class="card " style="width: 18rem;" *ngFor="let instruction of instruction" id='instruction'>
+  <a routerLink='/instruction/{{post.id}}'></a>
+  <img class="card-img-top" src="{{post.url}}" alt="Card image cap">
+  <div class="card-body card_2" id='postName'>
+    <p class="card-text">{{post.postname}}</p>
   </div>
-</div>  
+</div> 
+</div>

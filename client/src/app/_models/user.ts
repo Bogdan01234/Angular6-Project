@@ -4,7 +4,7 @@
     password: string;
     avatar: string;
     activated: Number;
-    amins: Number;
+    admins: Number;
     email: string;
 }
 

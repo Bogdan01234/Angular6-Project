@@ -10,12 +10,6 @@
            <div ngbDropdownMenu>
              <a class="dropdown-header">Dropdown header</a>
              <a class="dropdown-item" [routerLink]="['/home']">User List</a>
-             <a class="dropdown-item" [routerLink]="['/profile']">Profile</a>
-             <a class="dropdown-item" href="#">Something else here</a>
-             <div class="dropdown-divider"></div>
-             <a class="dropdown-item" href="#">Separated link</a>
-             <div class="dropdown-divider"></div>
-             <a class="dropdown-item" href="#">One more separated link</a>
            </div>
          </div>
       </div>
@@ -54,7 +48,7 @@
             </ul>
             <ul class="navbar-nav ml-auto" *ngIf = 'isUserLog'>            
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/profile']">
+                        <a class="nav-link" [routerLink]="['/profile', currentUser.username ]">
                             <i class="now-ui-icons user-1"></i>
                             <p>Profile</p>
                         </a>

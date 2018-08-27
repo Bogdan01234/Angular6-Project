@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
+// import { FormBuilder, FormGroup, FormArray, FormControl, ValidatorFn } from '@angular/forms';
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
 import { Router } from '@angular/router';
@@ -77,6 +77,20 @@ export class HomeComponent implements OnInit {
     unblock(){
         for (let user of this.controller){
             this.userService.unblock(user).subscribe(() => { this.loadAllUsers() });
+            }
+        this.controller.splice(0);
+    }
+
+    addAdmin(){
+        for (let user of this.controller){
+            this.userService.addAdmin(user).subscribe(() => { this.loadAllUsers() });
+            }
+        this.controller.splice(0);
+    }
+
+    deliteAdmin(){
+        for (let user of this.controller){
+            this.userService.deleteAdmin(user).subscribe(() => { this.loadAllUsers() });
             }
         this.controller.splice(0);
     }

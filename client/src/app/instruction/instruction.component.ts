@@ -2,12 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 // import {PageScrollConfig} from 'ng2-page-scroll';
 import {MatStepper} from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AllService } from '../../_services/all.service';
-import { UserService} from '../../_services/user.service';
+import { AllService } from '../_services/all.service';
+import { UserService} from '../_services/user.service';
 
-import { Post } from '../../_models';
-import { User } from '../../_models';
-import { Step } from '../../_models';
+import { Post } from '../_models';
+import { User } from '../_models';
+import { Step } from '../_models';
 
 @Component({
   selector: 'abe-instruction',

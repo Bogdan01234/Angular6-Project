@@ -12,7 +12,7 @@ import { UserService } from '../_services/index';
 export class ProfileComponent implements OnInit {
   
   currentUser: User;
-  users: User[] = [];
+  user: User;;
 
   max = 10;
   rate = 7;
@@ -26,10 +26,13 @@ export class ProfileComponent implements OnInit {
     focus;
     focus1;
 
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService) {
+      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+     }
 
     ngOnInit() {
-
+        // this.loadAllUser();
+        
         var body = document.getElementsByTagName('body')[0];
         body.classList.add('profile-page');
         var navbar = document.getElementsByTagName('nav')[0];
@@ -49,6 +52,11 @@ export class ProfileComponent implements OnInit {
    
     resetStar(): void {
       this.overStar = void 0;
+    }
+
+    private loadAllUser() {
+      this.userService.getById(this.currentUser.id).subscribe(user => { this.user = user; });
+      console.log(this.currentUser.id);
     }
 
 }

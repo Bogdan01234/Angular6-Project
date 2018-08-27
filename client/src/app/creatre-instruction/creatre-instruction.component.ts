@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Categories, Appload } from '../interfase/index'
+import { Categories, Appload, ArrayAppload } from '../interfase/index'
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AllService } from '../_services/all.service';
-import { UserService} from '../_services/user.service';
+// import { UserService} from '../_services/user.service';
 import { UploadFile, UploadEvent, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { User } from '../_models/index';
 
@@ -39,6 +39,7 @@ export class CreatreInstructionComponent implements OnInit {
   public mainForm: FormGroup;
   public instruction: Appload [] = [];
   public step: Node;
+  public arrayAppload: ArrayAppload;
 
   constructor(private allService: AllService, private formBuilder: FormBuilder) { 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -66,9 +67,10 @@ export class CreatreInstructionComponent implements OnInit {
     this.instruction.shift();
     this.instruction.unshift(this.mainForm.value);
     this.instruction[0].username = this.currentUser.username;    
-    this.instruction.push(stepForm1.value);    
-    this.allService.addPosts(this.instruction);
-    console.log(this.instruction);
+    this.instruction.push(stepForm1.value);
+    this.arrayAppload.value = this.instruction;    
+    this.allService.addPosts(this.arrayAppload);
+    console.log(this.arrayAppload);
     // alert("Instruction created");
     // window.location.reload();
   }

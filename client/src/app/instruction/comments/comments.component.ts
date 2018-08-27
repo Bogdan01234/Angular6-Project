@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { AllService } from '../../../_services/all.service';
+import { AllService } from '../../_services/all.service';
 import { HttpClient } from '@angular/common/http';
-import { Comment } from '../../../_models';
+import { Comment } from '../../_models';
 
 @Component({
   selector: 'app-comments',

@@ -32,7 +32,9 @@ service.addComment = addComment;
 service.getComment = getComment;
 service.update = update;
 service.blocking = blocking;
+service.deleteAdmin = deleteAdmin;
 service.unblock = unblock;
+service.addAdmin = addAdmin;
 service.delete = _delete;
 service.getByName = getByName;
 service.addPosts = addPosts;
@@ -52,6 +54,7 @@ function authenticate(username, password) {
                 username: user.username,
                 email: user.email,
                 activated: user.activated,
+                admins: user.admins,
                 token: jwt.sign({ sub: user.id }, config.secret)
             });
         } else {
@@ -86,7 +89,7 @@ function getComment(postId, login) {
     Comment.findAll({ where: { id: postId, userName: login, raw: true}}).then(function(users){
         // projects will be an array of all Project instances
         comment = _.map(comment, function (comment) {
-            return _.omit(comment, 'hash');
+            return _.omit(comment);
         });
 
         deferred.resolve(comment);
@@ -97,6 +100,7 @@ function getComment(postId, login) {
 
 function getById(id) {
     var deferred = Q.defer();
+    console.log(id);
 
     User.findById(id)
     .then(function (user) {
@@ -147,10 +151,11 @@ function create(userParam, activated) {
 
     function createUser() {
         activated = 0;
+        admins = 0;
         // set user object to userParam without the cleartext password
-        var user = _.omit(userParam,'password', 'activated');
+        var user = _.omit(userParam,'password', 'admins', 'activated');
         user.activated = activated;      
-        
+        user.admins = admins;
         
 
         // add hashed password to user object
@@ -190,7 +195,7 @@ function addComment(comment) {
 
 function addPosts(instruction) {
     var deferred = Q.defer();
-
+    console.log("ani")
     var post = _.omit(instruction[0].name, instruction[0].categories,instruction[0].username , instruction[0].content, instruction.lenght - 1, 'url');
     // var steps = _.omit(userParam,'password', 'activated');
 
@@ -297,6 +302,16 @@ function unblock(id) {
     return updateById(id, 0);
 }
 
+function addAdmin(id) {
+
+    return adminById(id, 1);
+}
+
+function deleteAdmin(id) {
+
+    return adminById(id, 0);
+}
+
 function updateById(id, activated){
     var deferred = Q.defer();
     
@@ -316,3 +331,21 @@ function updateById(id, activated){
 
 }
 
+function adminById(id, activated){
+    var deferred = Q.defer();
+    
+    User.findById(id)
+    .then(function () {
+
+            var userUpd = User.build({ id: id }, { isNewRecord: false });
+
+            userUpd.update({activated: activated}, { where: { id: id } })
+            .then(function(){
+                deferred.resolve();
+            });                 
+               
+    });
+
+    return deferred.promise;
+
+}

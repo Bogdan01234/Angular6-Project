@@ -7,14 +7,17 @@ var userService = require('services/user.service');
 router.post('/authenticate', authenticate);
 router.post('/register', register);
 router.post('/comment', addComment);
-
+router.post('/instruction', instruction);
 router.get('/comment', getComment);
 router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:id', update);
-router.get('/:id', blocking);
+router.get('/blocking/:id', blocking);
+router.get('/:id', getById);
 router.get('/:name', getByName);
 router.get('/unblock/:id', unblock);
+router.get('/addAdmin/:id', addAdmin);
+router.get('/deleteAdmin/:id', deleteAdmin);
 router.delete('/:id', _delete);
 
 module.exports = router;
@@ -29,6 +32,23 @@ function authenticate(req, res) {
                 // authentication failed
                 res.status(400).send('Username or password is incorrect or you are blocked');
             }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+
+
+
+
+
+function instruction(req, res) {
+    debugger
+    console.log(req.instruction, "2222")
+    userService.addPosts(req.body)
+        .then(function () {
+            res.json('success');
         })
         .catch(function (err) {
             res.status(400).send(err);
@@ -94,6 +114,26 @@ function getCurrent(req, res) {
         });
 }
 
+function deleteAdmin(req, res) {
+    userService.deleteAdmin(req.params.id, req.body)
+        .then(function () {
+            res.json('success');
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function addAdmin(req, res) {
+    userService.addAdmin(req.params.id, req.body)
+        .then(function () {
+            res.json('success');
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
 function update(req, res) {
     userService.update(req.params.id, req.body)
         .then(function () {
@@ -124,6 +164,19 @@ function getByName(req, res) {
         .catch(function (err) {
             res.status(400).send(err);
         });
+}
+
+function getById(req, res) {
+    userService.getById(req.id)
+        .then(function (users) {
+            console.log(users);
+            res.send(users);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+
+        
 }
 
 function blocking(req, res) {

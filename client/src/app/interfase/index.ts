@@ -1,3 +1,4 @@
-﻿export * from './deleteSelf.interfase';
-export * from './categories.interfase';
+﻿export * from './deleteSelf.interface';
+export * from './categories.interface';
 export * from './appload.interfase';
+export * from './arrey.appload';
