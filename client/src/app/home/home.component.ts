@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit {
         this.controller.splice(0);
     }
 
-    deliteAdmin(){
+    deleteAdmin(){
         for (let user of this.controller){
             this.userService.deleteAdmin(user).subscribe(() => { this.loadAllUsers() });
             }

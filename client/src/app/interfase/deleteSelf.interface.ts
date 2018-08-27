@@ -1,4 +1,3 @@
 export interface DeleteSelf {
-    deleteSelf;
-
+    deleteSelf: DeleteSelf;
 }

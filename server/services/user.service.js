@@ -331,7 +331,7 @@ function updateById(id, activated){
 
 }
 
-function adminById(id, activated){
+function adminById(id, admins){
     var deferred = Q.defer();
     
     User.findById(id)
@@ -339,7 +339,7 @@ function adminById(id, activated){
 
             var userUpd = User.build({ id: id }, { isNewRecord: false });
 
-            userUpd.update({activated: activated}, { where: { id: id } })
+            userUpd.update({admins: admins}, { where: { id: id } })
             .then(function(){
                 deferred.resolve();
             });                 

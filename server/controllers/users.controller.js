@@ -13,7 +13,7 @@ router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:id', update);
 router.get('/blocking/:id', blocking);
-router.get('/:id', getById);
+// router.get('/:id', getById);
 router.get('/:name', getByName);
 router.get('/unblock/:id', unblock);
 router.get('/addAdmin/:id', addAdmin);
@@ -45,7 +45,7 @@ function authenticate(req, res) {
 
 function instruction(req, res) {
     debugger
-    console.log(req.instruction, "2222")
+    console.log(req.arrayAppload, "2222")
     userService.addPosts(req.body)
         .then(function () {
             res.json('success');
@@ -167,6 +167,7 @@ function getByName(req, res) {
 }
 
 function getById(req, res) {
+    console.log(req.id,"serverS")
     userService.getById(req.id)
         .then(function (users) {
             console.log(users);
@@ -181,6 +182,7 @@ function getById(req, res) {
 
 function blocking(req, res) {
     var deleteSelf = req.user.sub === req.params.id;
+    console.log(deleteSelf);
     userService.blocking(req.params.id)
         .then(function () {
         res.json({deleteSelf: deleteSelf});

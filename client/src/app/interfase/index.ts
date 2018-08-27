@@ -1,4 +1,4 @@
 ﻿export * from './deleteSelf.interface';
 export * from './categories.interface';
 export * from './appload.interfase';
-export * from './arrey.appload';
+export * from './array.appload';

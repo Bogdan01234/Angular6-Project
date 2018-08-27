@@ -18,7 +18,7 @@ import {InputTextareaModule} from 'primeng/inputtextarea';
 import { ProfileComponent } from './profile';
 import { LandingComponent } from './landing';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './_guards';
+import { AuthGuard, GuardsAdmin } from './_guards';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import { AlertService, AuthenticationService, UserService, AllService } from './_services';
 import { HomeComponent } from './home';
@@ -77,6 +77,7 @@ import { CommentsComponent } from './instruction/comments/comments.component';
   ],
   providers: [
     AuthGuard,
+    GuardsAdmin,
         AlertService,
         AuthenticationService,
         AllService,

@@ -6,12 +6,11 @@ import { Post } from '../_models';
 import { Step } from '../_models';
 import { Comment } from '../_models';
 import { appConfig } from '../app.config';
-import { Appload } from '../interfase/index'
+import { Appload, ArrayAppload } from '../interfase/index'
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class AllService {
 
   formData: FormData = new FormData();
@@ -19,35 +18,35 @@ export class AllService {
   constructor(private http: HttpClient) { }
 
   getComments(postId, login): Observable<Comment[]> {
-    return this.http.get<Comment[]>(appConfig.apiUrl + '/comments/'+ postId + login)
+    return this.http.get<Comment[]>(appConfig.apiUrl + '/users/comments/'+ postId + login)
   }
 
   addComment(comment: FormData) : Observable<Comment> {
-    return this.http.post<Comment>(appConfig.apiUrl + '/comment/', comment);
+    return this.http.post<Comment>(appConfig.apiUrl + '/users/comment/', comment);
    }    
 
   getSteps(postId, numSteps): Observable<Step[]> {
-    return this.http.get<Step[]>(appConfig.apiUrl + '/steps' + postId +numSteps)
+    return this.http.get<Step[]>(appConfig.apiUrl + '/users/steps' + postId +numSteps)
   }
 
   getPost(id): Observable<Post> {
-    return this.http.get<Post>(appConfig.apiUrl + '/post' + id)
+    return this.http.get<Post>(appConfig.apiUrl + '/users/post' + id)
   }
 
   getAllPost(): Observable<Post[]> {
-    return this.http.get<Post[]>(appConfig.apiUrl + '/post')
+    return this.http.get<Post[]>(appConfig.apiUrl + '/users/post')
   }
 
   getCategoryCards(category): Observable<Post[]> {
-    return this.http.get<Post[]>(appConfig.apiUrl + '/category' + category)
+    return this.http.get<Post[]>(appConfig.apiUrl + '/users/category' + category)
   }
 
   getRecentPostCards(): Observable<Post[]> {
-    return this.http.get<Post[]>(appConfig.apiUrl + '/recentPost')
+    return this.http.get<Post[]>(appConfig.apiUrl + '/users/recentPost')
   }
 
   getUserPosts(login: string): Observable<Post[]> {
-    return this.http.get<Post[]>(appConfig.apiUrl + '/return_user_posts' + login)
+    return this.http.get<Post[]>(appConfig.apiUrl + '/getPosts' + login)
   }
 
   addPosts(arrayAppload) {
@@ -55,5 +54,6 @@ export class AllService {
   
     return this.http.post(appConfig.apiUrl + '/users/instruction', arrayAppload);
   }
+
   
 }

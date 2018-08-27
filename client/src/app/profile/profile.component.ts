@@ -31,7 +31,6 @@ export class ProfileComponent implements OnInit {
      }
 
     ngOnInit() {
-        // this.loadAllUser();
         
         var body = document.getElementsByTagName('body')[0];
         body.classList.add('profile-page');
@@ -54,9 +53,6 @@ export class ProfileComponent implements OnInit {
       this.overStar = void 0;
     }
 
-    private loadAllUser() {
-      this.userService.getById(this.currentUser.id).subscribe(user => { this.user = user; });
-      console.log(this.currentUser.id);
-    }
+
 
 }

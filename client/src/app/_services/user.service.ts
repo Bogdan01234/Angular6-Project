@@ -17,8 +17,9 @@ export class UserService {
         return this.http.get<User>(appConfig.apiUrl + '/users/' + username);
     }
 
-    getById(id: string):Observable<User>{
-        return this.http.get<User>(appConfig.apiUrl + '/users/' + id);
+    getById(id: string){
+        console.log(id, "ssssss");
+        return this.http.get(appConfig.apiUrl + '/users/' + id);
     }
 
     create(user: User) {
@@ -34,7 +35,7 @@ export class UserService {
     }
 
     blocking(id: string) {
-        return this.http.get(appConfig.apiUrl + '/users/' + id);
+        return this.http.get(appConfig.apiUrl + '/users/blocking/' + id);
     }
 
     unblock(id: string){

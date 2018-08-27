@@ -31,15 +31,15 @@ export class CreatreInstructionComponent implements OnInit {
     {value:'Health'},
     {value:'Hobbies and Crafts'},
     {value:'Pets and Animals'},
-    {value:'Sports and Fitness'},
-    {value:'Other'}
+    {value:'Sports and Fitness'}
   ]; 
 
   
   public mainForm: FormGroup;
   public instruction: Appload [] = [];
   public step: Node;
-  public arrayAppload: ArrayAppload;
+  // public arrayAppload: ArrayAppload = [];
+
 
   constructor(private allService: AllService, private formBuilder: FormBuilder) { 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -68,9 +68,9 @@ export class CreatreInstructionComponent implements OnInit {
     this.instruction.unshift(this.mainForm.value);
     this.instruction[0].username = this.currentUser.username;    
     this.instruction.push(stepForm1.value);
-    this.arrayAppload.value = this.instruction;    
-    this.allService.addPosts(this.arrayAppload);
-    console.log(this.arrayAppload);
+    // this.arrayAppload.value = this.instruction;    
+    this.allService.addPosts(this.instruction);
+    // console.log(this.arrayAppload);
     // alert("Instruction created");
     // window.location.reload();
   }
